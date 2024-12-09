@@ -49,10 +49,27 @@ export default function ResultPage() {
     fetchPrediction();
   }, [router]);
 
+  const spinnerStyle = {
+    width: '50px',
+    height: '50px',
+    border: '5px solid rgba(0, 0, 0, 0.1)',
+    borderTop: '5px solid #E00019',
+    borderRadius: '50%',
+    animation: 'spin 1s linear infinite',
+  };
+
+  const animationKeyframes = `
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  `;
+
   const loadingContent = (
     <>
-      <div className="loading-animation">
-        <div className="spinner"></div>
+      <style>{animationKeyframes}</style>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+        <div style={spinnerStyle}></div>
       </div>
     </>
   );
