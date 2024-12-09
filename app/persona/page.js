@@ -9,24 +9,25 @@ import Button from '../components/Button';
 const genders = [
   { value: 'Female', label: 'Female' },
   { value: 'Male', label: 'Male' },
-  { value: 'Diverse', label: 'Diverse' },
+  { value: 'Non-binary', label: 'Non-binary' },
 ];
 const facialFeatures = [
   { value: 'long Beard', label: 'Long Beard' },
   { value: 'short Beard', label: 'Short Beard' },
-  { value: 'Mustache', label: 'Mustache' },
+  { value: 'Make-up', label: 'Make-up' },
   { value: 'Glasses', label: 'Glasses' },
-  { value: 'Freckles', label: 'Freckles' },
-  { value: 'Birthmark', label: 'Birthmark' },
+  { value: 'Jewelry', label: 'Jewelry' },
+  { value: 'Facial Tattoos', label: 'Facial Tattoos' },
   { value: 'a Hat', label: 'Hat' },
   { value: 'Piercings', label: 'Piercings' },
-  { value: 'No Specific Features', label: 'No Specific Features' },
+  { value: 'a Scarf', label: 'Scarf' },
 ];
 const hairLengths = [
   { value: 'Short', label: 'Short' },
   { value: 'Shoulder-length', label: 'Medium' },
   { value: 'Long', label: 'Long' },
   { value: 'Bald', label: 'Bald' },
+  { value: 'Curly', label: 'Curly' },
   { value: 'Shaved', label: 'Shaved' },
 ];
 const hairColors = [
@@ -34,8 +35,25 @@ const hairColors = [
   { value: 'Brown', label: 'Brown' },
   { value: 'Blonde', label: 'Blonde' },
   { value: 'Red', label: 'Red' },
-  { value: 'Gray', label: 'Gray' },
-  { value: 'colored', label: 'Colored' },
+  { value: 'White', label: 'White' },
+  { value: 'Silver', label: 'Silver' },
+  { value: ' ', label: 'None' },
+];
+
+const ethnicity = [
+  { value: 'African', label: 'African' },
+  { value: 'Southeast Asian', label: 'Southeast Asian' },
+  { value: 'Asian', label: 'Asian' },
+  { value: 'American', label: 'American' },
+  { value: 'Scandinavian', label: 'Scandinavian' },
+  { value: 'Caribbean', label: 'Caribbean' },
+  { value: 'Polynesian', label: 'Polynesian' },
+  { value: 'South American', label: 'South American' },
+  { value: 'European', label: 'European' },
+  { value: 'East-European', label: 'East-European' },
+  { value: 'Middle Eastern', label: 'Middle Eastern' },
+  { value: 'Oceanic', label: 'Oceanic' },
+  { value: ' ', label: 'None' },
 ];
 
 const customStyles = {
@@ -114,7 +132,8 @@ export default function PersonaPage() {
       gender.length === 0 ||
       facialFeatures.length === 0 ||
       hairLength.length === 0 ||
-      hairColor.length === 0
+      hairColor.length === 0 ||
+      ethnicity.length === 0
     ) {
       alert('Please select at least one option from each dropdown before proceeding.');
       return;
@@ -137,7 +156,17 @@ export default function PersonaPage() {
         />
       </div>
       <div style={{ marginBottom: '20px' }}>
-      <label style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '20px', color: '#333', marginBottom: '10px', display: 'block'}}>Facial Features:</label>
+      <label style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '20px', color: '#333', marginBottom: '10px', display: 'block'}}>Ethnicity:</label>
+      <Select
+        options={ethnicity}
+        isMulti
+        onChange={(selected) => handleSelection('ethnicity', selected || [])}
+        placeholder="Choose"
+        styles={customStyles}
+      />
+      </div>
+      <div style={{ marginBottom: '20px' }}>
+      <label style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '20px', color: '#333', marginBottom: '10px', display: 'block'}}>Accessoires:</label>
         <Select
           options={facialFeatures}
           isMulti

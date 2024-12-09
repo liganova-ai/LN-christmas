@@ -22,6 +22,7 @@ const customStyles = {
   }),
   menu: (base) => ({
     ...base,
+    fontFamily: 'Helvetica, Arial, sans-serif',
     width: '300px',
   }),
   placeholder: (base) => ({
@@ -52,6 +53,15 @@ export default function ThemePage() {
     if (storedPersona) setPersona(JSON.parse(storedPersona));
   }, []);
 
+  const themePrompts = {
+    Miami: "Real photography of a [ethnie] [gender] person with [hair colour] [hair type] hair and [accessoires] wearing a shirt and walking with an ice cream on Muscle Beach Miami, in the background people using training stations children’s playing on playground and colorful beach houses, sun high up",
+    Vietnam: "Real photography of a [ethnie] [gender] person with [hair colour] [hair type] hair and [accessoires] standing on rice terraces in Vietnam, traditional workers in the background, scenic mountain view with hundreds of rice field terraces, sun is shining through the mountains",
+    Antarctica: "Real photography of a [ethnie] [gender] person with [hair colour] [hair type] hair  and [accessoires] wearing heavy tactile winter gear while standing on the front railing of an expedition ship, in the background are icebergs with dozens of penguins on top of the iceberg, some penguins jumping into the water, middle of Antarctica",
+    "Burning Man": "Real photography of a [ethnie] [gender] person with [hair colour] [hair type] hair and [accessoires] posing in front of a Mad Max truck with dozens of people partying on top of the truck, racing in the desert through the Burning Man festival, tents surrounding the truck, night time shot",
+    "African Safari": "Real photography of a [ethnie] [gender] person with [hair colour] [hair type] hair and [accessoires] wearing a Safari outfit and sitting inside a safari truck driving through the African savanna, an elephant family and African vegetation in the background",
+  };
+
+
   const handleThemeSelection = async (selectedOption) => {
     if (!image) {
       alert('Image not found! Please upload or capture an image first.');
@@ -63,15 +73,17 @@ export default function ThemePage() {
       return;
     }
 
-    const { gender, facialFeatures, hairLength, hairColor } = persona;
+    const { gender, facialFeatures, hairLength, hairColor, ethnicity } = persona;
 
-    // Combine arrays into readable text for the prompt
-    const combinedPrompt = `A ${gender.join(' or ')} person with ${facialFeatures.join(
-      ', '
-    )} and ${hairLength.join(' and ')} ${hairColor.join(
-      ' and '
-    )} hair standing in front of scene typical for ${selectedOption.value}`;
+    const selectedPrompt = themePrompts[selectedOption.value];
 
+    const combinedPrompt = selectedPrompt
+      .replace("[ethnie]", ethnicity.join(" or "))
+      .replace("[gender]", gender.join(" or "))
+      .replace("[hair colour]", hairColor.join(" and "))
+      .replace("[hair type]", hairLength.join(" and "))
+      .replace("[accessoires]", facialFeatures.join(", "));
+  
     console.log('Final Prompt:', combinedPrompt);
 
     try {
