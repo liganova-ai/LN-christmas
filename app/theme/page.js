@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 
-// themes = buttons on page, theme_specification = corelating prompt input
+// themes = buttons on page, theme_specification = corelating prompt input (implement value label pair)
 const themes = ['Desert and Dunes', 'Beach Vacation' , 'Berlin Televison Tower'];
 const theme_specification = ['sand dunes with impresisve Pyramids of Giza in the background'] // prompt behind the buttons 
 
@@ -32,11 +32,16 @@ export default function ThemePage() {
       return;
     }
 
-    const { gender, facialFeature, hairLength, hairColor } = persona;
+    const { gender, facialFeatures, hairLength, hairColor } = persona;
 
-    const combinedPrompt = `A ${gender} person with ${facialFeature} and ${hairColor} ${hairLength} hair standing in front of scene typcial for ${theme}  `;
-    console.log("Final Prompt:", combinedPrompt);
+    // Combine arrays into readable text for the prompt
+    const combinedPrompt = `A ${gender.join(' or ')} person with ${facialFeatures.join(
+      ', '
+    )} and ${hairLength.join(' and ')} ${hairColor.join(
+      ' and '
+    )} hair standing in front of scene typical for ${theme}`;
 
+    console.log('Final Prompt:', combinedPrompt);
     
     try {
       const response = await fetch('/api/predictions', {

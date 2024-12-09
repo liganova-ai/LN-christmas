@@ -1,33 +1,60 @@
-// sepcify persona details with drop downs to get better output 
-
 'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Select from 'react-select';
 
-const genders = ['Male', 'Female', 'Diverse'];
-const facialFeatures = ['Long Beard', 'Short beard', 'Mustache', 'Piercings', 'Birthmark', 'Glasses', 'Freckles', 'Hat', 'No Specific Features'];
-const hairLengths = ['Short', 'Shoulder-length', 'Long', 'Bald', 'Shaved'];
-const hairColors = ['Black', 'Brown', 'Blonde', 'Red', 'Gray', 'White', 'Dyed'];
+const genders = [
+  { value: 'Female', label: 'Female' },
+  { value: 'Male', label: 'Male' },
+  { value: 'Non-binary', label: 'Non-binary' },
+];
+const facialFeatures = [
+  { value: 'Beard', label: 'Beard' },
+  { value: 'Glasses', label: 'Glasses' },
+  { value: 'Freckles', label: 'Freckles' },
+  { value: 'No Specific Features', label: 'No Specific Features' },
+];
+const hairLengths = [
+  { value: 'Short', label: 'Short' },
+  { value: 'Medium', label: 'Medium' },
+  { value: 'Long', label: 'Long' },
+];
+const hairColors = [
+  { value: 'Black', label: 'Black' },
+  { value: 'Brown', label: 'Brown' },
+  { value: 'Blonde', label: 'Blonde' },
+  { value: 'Red', label: 'Red' },
+  { value: 'Gray', label: 'Gray' },
+];
 
 export default function PersonaPage() {
   const router = useRouter();
   const [persona, setPersona] = useState({
-    gender: '',
-    facialFeature: '',
-    hairLength: '',
-    hairColor: '',
+    gender: [],
+    facialFeatures: [],
+    hairLength: [],
+    hairColor: [],
   });
 
-  const handleSelection = (field, value) => {
-    setPersona((prev) => ({ ...prev, [field]: value }));
+  const handleSelection = (field, selectedOptions) => {
+    setPersona((prev) => ({
+      ...prev,
+      [field]: selectedOptions.map((option) => option.value), // Store array of selected values
+    }));
   };
 
   const proceedToTheme = () => {
-    const { gender, facialFeature, hairLength, hairColor } = persona;
+    const { gender, facialFeatures, hairLength, hairColor } = persona;
 
-    if (!gender || !facialFeature || !hairLength || !hairColor) {
-      alert('Please select all options before proceeding.');
+    // Validate all fields have at least one selection
+    if (
+      gender.length === 0 ||
+      facialFeatures.length === 0 ||
+      hairLength.length === 0 ||
+      hairColor.length === 0
+    ) {
+      alert('Please select at least one option from each dropdown before proceeding.');
       return;
     }
 
@@ -40,52 +67,44 @@ export default function PersonaPage() {
     <div className="persona-page">
       <h1>Select Persona Details</h1>
 
-      <div>
+      <div className="dropdown-container">
         <label>Gender:</label>
-        <select onChange={(e) => handleSelection('gender', e.target.value)}>
-          <option value="">Select Gender</option>
-          {genders.map((gender) => (
-            <option key={gender} value={gender}>
-              {gender}
-            </option>
-          ))}
-        </select>
+        <Select
+          options={genders}
+          isMulti
+          onChange={(selected) => handleSelection('gender', selected || [])}
+          placeholder="Select Gender"
+        />
       </div>
 
-      <div>
+      <div className="dropdown-container">
         <label>Facial Features:</label>
-        <select onChange={(e) => handleSelection('facialFeature', e.target.value)}>
-          <option value="">Select Facial Feature</option>
-          {facialFeatures.map((feature) => (
-            <option key={feature} value={feature}>
-              {feature}
-            </option>
-          ))}
-        </select>
+        <Select
+          options={facialFeatures}
+          isMulti
+          onChange={(selected) => handleSelection('facialFeatures', selected || [])}
+          placeholder="Select Facial Features"
+        />
       </div>
 
-      <div>
+      <div className="dropdown-container">
         <label>Hair Length:</label>
-        <select onChange={(e) => handleSelection('hairLength', e.target.value)}>
-          <option value="">Select Hair Length</option>
-          {hairLengths.map((length) => (
-            <option key={length} value={length}>
-              {length}
-            </option>
-          ))}
-        </select>
+        <Select
+          options={hairLengths}
+          isMulti
+          onChange={(selected) => handleSelection('hairLength', selected || [])}
+          placeholder="Select Hair Length"
+        />
       </div>
 
-      <div>
+      <div className="dropdown-container">
         <label>Hair Color:</label>
-        <select onChange={(e) => handleSelection('hairColor', e.target.value)}>
-          <option value="">Select Hair Color</option>
-          {hairColors.map((color) => (
-            <option key={color} value={color}>
-              {color}
-            </option>
-          ))}
-        </select>
+        <Select
+          options={hairColors}
+          isMulti
+          onChange={(selected) => handleSelection('hairColor', selected || [])}
+          placeholder="Select Hair Color"
+        />
       </div>
 
       <button onClick={proceedToTheme}>Next</button>
