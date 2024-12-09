@@ -1,15 +1,8 @@
-/* components/Layout.module.css */
 .layout {
     display: flex;
     flex-direction: column;
     height: 100vh;
     background: white;
-  }
-  
-  .firstPage {
-    background-image: url('../../public/start-background.png');
-    background-size: cover;
-    background-position: center;
   }
   
   .header {
@@ -19,36 +12,46 @@
   }
   
   .logo {
-    width: 150px; /* Adjust size as needed */
+    width: 170px;
     height: auto;
+    padding: 40px 100px;
   }
   
   .content {
     display: flex;
     flex: 1;
-    padding: 60px 100px;
+    padding: 280px 100px;
   }
   
   .leftSection {
-    width: 40%;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
   
   .heading {
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 80px;
-    margin: 0;
+    font-size: 60px;
+    margin-bottom: 10px;
   }
   
   .copyText {
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 30px;
-    margin: 20px 0;
+    font-size: 24px;
+    padding-right: 190px;
+  }
+  
+  .buttonContainer {
+    margin-top: auto;
+    padding-top: 100px; 
   }
   
   .rightSection {
-    width: 60%;
+    width: 55%;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-left: 20px;
   }
   
