@@ -50,7 +50,7 @@ export default function UploadPage() {
       {!image ? (
         <>
           <div style={{ display: 'flex',flexDirection: 'column',  gap: '10px' }}>
-            <Button onClick={capturePhoto} style={{ width: '100%' }}>Take Picture</Button>
+            <Button onClick={capturePhoto}>Take Picture</Button>
             <input
               type="file"
               accept="image/*"
@@ -59,14 +59,14 @@ export default function UploadPage() {
                 display: 'none',  // Hide the default file input
               }}
             />
-            <Button onClick={() => document.querySelector('input[type="file"]').click()} style={{ width: '100%' }} >Upload a Picture</Button>
+            <Button onClick={() => document.querySelector('input[type="file"]').click()}>Upload a Picture</Button>
           </div>
         </>
       ) : (
         <>
          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          <Button onClick={retakePhoto} style={{ width: '100%' }} >Retake Photo</Button>
-          <Button onClick={proceedToTheme} style={{ width: '100%' }}>Use Photo</Button>
+          <Button onClick={retakePhoto}>Retake Photo</Button>
+          <Button onClick={proceedToTheme}>Use Photo</Button>
           </div>
         </>
       )}
