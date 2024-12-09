@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-const themes = ['Christmas', 'Bahamas', 'Cyberpunk', 'Vintage'];
+const themes = ['Christmas landscape', 'Pyramids of Giza', 'Beach and Ocean', 'Snow Landscape' , 'Berlin Televison Tower'];
 
 export default function ThemePage() {
   const router = useRouter();
@@ -28,7 +28,7 @@ export default function ThemePage() {
       const response = await fetch('/api/predictions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: "persons face is facing the camera in front of scene typical for " + theme, main_face_image: image }),
+        body: JSON.stringify({ prompt: "persons face is facing the camera in front of impressive scene of " + theme, main_face_image: image }),
       });
       console.log("Sending image to API:", image); // Debugging: Ensure correct data flow
       const prediction = await response.json();
