@@ -23,12 +23,12 @@ export default function ThemePage() {
     }
 
 
-
+    
     try {
       const response = await fetch('/api/predictions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: theme, main_face_image: image }),
+        body: JSON.stringify({ prompt: "persons face is facing the camera in front of scene typical for " + theme, main_face_image: image }),
       });
       console.log("Sending image to API:", image); // Debugging: Ensure correct data flow
       const prediction = await response.json();

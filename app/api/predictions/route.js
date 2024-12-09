@@ -29,9 +29,10 @@ export async function POST(request) {
       version: '8baa7ef2255075b46f4d91cd238c21d31181b3e6a864463f967960bb0112525b',
       input: {
         prompt,
+        main_face_image,
+        num_steps: 20, 
         start_step: 4,
         num_outputs: 1,
-        main_face_image, // Pass Base64 string directly
         negative_prompt: "bad quality, worst quality, text, signature, watermark, extra limbs"
       },
       
