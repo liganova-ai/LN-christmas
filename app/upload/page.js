@@ -21,9 +21,10 @@ export default function UploadPage() {
 
   const proceedToTheme = () => {
     if (image) {
+      console.log("Navigating to persona page...");
       // Store the image in localStorage
       localStorage.setItem('uploadedImage', image);
-      router.push('/theme');
+      router.push('/persona');
     }
   };
 
