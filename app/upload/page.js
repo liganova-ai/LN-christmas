@@ -19,6 +19,10 @@ export default function UploadPage() {
     reader.readAsDataURL(event.target.files[0]);
   };
 
+  const retakePhoto = () => {
+    setImage(null); // Reset the image to retake the photo
+  };
+
   const proceedToTheme = () => {
     if (image) {
       console.log("Navigating to persona page...");
@@ -38,9 +42,14 @@ export default function UploadPage() {
           <input type="file" accept="image/*" onChange={handleUpload} />
         </>
       ) : (
-        <img src={image} alt="Preview" />
+        <>
+          <img src={image} alt="Preview" />
+          <div>
+            <button onClick={retakePhoto}>Retake Photo</button>
+            <button onClick={proceedToTheme}>Next</button>
+          </div>
+        </>
       )}
-      <button onClick={proceedToTheme} disabled={!image}>Next</button>
     </div>
   );
 }
