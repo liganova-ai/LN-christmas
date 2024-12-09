@@ -60,12 +60,13 @@ export default function ResultPage() {
   const resultContent = (
     <>
       {prediction && prediction.status === 'succeeded' && prediction.output && (
-        <div className="image-wrapper">
+        <div className="image-wrapper"
+>
           <Image
             src={prediction.output[prediction.output.length - 1]}
             alt="Generated image"
-            width={500}
-            height={500}
+            width={378}
+            height={486}
           />
         </div>
       )}
