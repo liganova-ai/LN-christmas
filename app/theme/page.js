@@ -2,16 +2,17 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Select from 'react-select';
+import Layout from '../components/Layout';
+import Button from '../components/Button';
 
-
-// themes = buttons on page, theme_specification = corelating prompt input (implement value label pair)
-const themes = ['Desert and Dunes', 'Beach Vacation' , 'Berlin Televison Tower'];
-const theme_specification = ['sand dunes with impresisve Pyramids of Giza in the background'] // prompt behind the buttons 
+const themes = ['Miami', 'Antarctica', 'Vietnam', 'Burning Man', 'African Safari'];
 
 export default function ThemePage() {
   const router = useRouter();
   const [image, setImage] = useState(null);
   const [persona, setPersona] = useState(null);
+  const [selectedTheme, setSelectedTheme] = useState(null);
 
   useEffect(() => {
     const storedImage = localStorage.getItem('uploadedImage');
@@ -21,7 +22,7 @@ export default function ThemePage() {
     if (storedPersona) setPersona(JSON.parse(storedPersona));
   }, []);
 
-  const handleThemeSelection = async (theme) => {
+  const handleThemeSelection = async (selectedOption) => {
     if (!image) {
       alert('Image not found! Please upload or capture an image first.');
       return;
@@ -39,10 +40,10 @@ export default function ThemePage() {
       ', '
     )} and ${hairLength.join(' and ')} ${hairColor.join(
       ' and '
-    )} hair standing in front of scene typical for ${theme}`;
+    )} hair standing in front of scene typical for ${selectedOption.value}`;
 
     console.log('Final Prompt:', combinedPrompt);
-    
+
     try {
       const response = await fetch('/api/predictions', {
         method: 'POST',
@@ -65,21 +66,32 @@ export default function ThemePage() {
     }
   };
 
+  // Dropdown content
+  const themeOptions = themes.map((theme) => ({ value: theme, label: theme }));
+
+  const dropdownContent = (
+    <Select
+      options={themeOptions}
+      onChange={handleThemeSelection}
+      placeholder="Select Travel Destination"
+    />
+  );
+
   return (
-    <div className="theme-page">
-      <h1>Select a Theme</h1>
-      {image ? (
-        <>
-          <img src={image} alt="Uploaded or Captured" />
-          {themes.map((theme) => (
-            <button key={theme} onClick={() => handleThemeSelection(theme)}>
-              {theme}
-            </button>
-          ))}
-        </>
-      ) : (
-        <p>Loading image...</p>
-      )}
-    </div>
+    <Layout
+      heading="Scene"
+      copyText="Now comes the important part. In which travel destination will you envision yourself next?"
+      rightContent={dropdownContent}
+    >
+      <div className="left-content">
+        {image ? (
+          <>
+            <Button onClick={() => handleThemeSelection(selectedTheme)}>Next</Button>
+          </>
+        ) : (
+          <p>Loading image...</p>
+        )}
+      </div>
+    </Layout>
   );
 }

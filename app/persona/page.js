@@ -76,13 +76,8 @@ export default function PersonaPage() {
       router.push('/theme');
     };
   
-    return (
-      <Layout
-        heading="Persona"
-        copyText="By telling us more about yourself, your image will get more accurate."
-      >
-        <div style={{ width: '100%' }}>
-          {/* Dropdowns */}
+    const dropdownContent = (
+        <div>
           <div style={{ marginBottom: '20px' }}>
             <label>Gender:</label>
             <Select
@@ -92,7 +87,6 @@ export default function PersonaPage() {
               placeholder="Select Gender"
             />
           </div>
-  
           <div style={{ marginBottom: '20px' }}>
             <label>Facial Features:</label>
             <Select
@@ -102,7 +96,6 @@ export default function PersonaPage() {
               placeholder="Select Facial Features"
             />
           </div>
-  
           <div style={{ marginBottom: '20px' }}>
             <label>Hair Length:</label>
             <Select
@@ -112,7 +105,6 @@ export default function PersonaPage() {
               placeholder="Select Hair Length"
             />
           </div>
-  
           <div style={{ marginBottom: '20px' }}>
             <label>Hair Color:</label>
             <Select
@@ -122,10 +114,16 @@ export default function PersonaPage() {
               placeholder="Select Hair Color"
             />
           </div>
-  
-          {/* Button */}
-          <Button onClick={proceedToTheme}>Next</Button>
         </div>
-      </Layout>
-    );
-  }
+      );
+    
+      return (
+        <Layout
+          heading="Persona"
+          copyText="By telling us more about yourself, your image will get more accurate."
+          rightContent={dropdownContent}
+        >
+          <Button onClick={proceedToTheme}>Next</Button>
+        </Layout>
+      );
+    }
