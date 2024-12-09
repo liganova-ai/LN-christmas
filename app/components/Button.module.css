@@ -1,0 +1,22 @@
+/* components/Button.module.css */
+.button {
+    background-color: red;
+    color: white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .button:hover:enabled {
+    background-color: #E00019;
+  }
+  
