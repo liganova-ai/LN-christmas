@@ -6,6 +6,36 @@ import Select from 'react-select';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
 
+const customStyles = {
+  control: (base) => ({
+    ...base,
+    fontFamily: 'Helvetica, Arial, sans-serif',
+    backgroundColor: '#f0f0f0',
+    borderRadius: '30px',
+    borderColor: '#ccc',
+    minHeight: '50px',
+    width: '400px',
+    boxShadow: 'none',
+    '&:hover': {
+      borderColor: '#888',
+    },
+  }),
+  menu: (base) => ({
+    ...base,
+    width: '300px',
+  }),
+  placeholder: (base) => ({
+    ...base,
+    color: '#888',
+    fontSize: '14px',
+    fontFamily: 'Helvetica, Arial, sans-serif',
+  }),
+  singleValue: (base) => ({
+    ...base,
+    fontFamily: 'Helvetica, Arial, sans-serif',
+  }),
+};
+
 const themes = ['Miami', 'Antarctica', 'Vietnam', 'Burning Man', 'African Safari'];
 
 export default function ThemePage() {
@@ -70,11 +100,15 @@ export default function ThemePage() {
   const themeOptions = themes.map((theme) => ({ value: theme, label: theme }));
 
   const dropdownContent = (
-    <Select
-      options={themeOptions}
-      onChange={handleThemeSelection}
-      placeholder="Select Travel Destination"
-    />
+    <div>
+      <label style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '20px', color: '#333', marginBottom: '10px', display: 'block'}}>Travel destination:</label>
+      <Select
+        options={themeOptions}
+        onChange={handleThemeSelection}
+        placeholder="Select Travel Destination"
+        styles={customStyles} 
+      />
+    </div>
   );
 
   return (
