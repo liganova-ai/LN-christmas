@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
 import Image from 'next/image';
+import styles from './result.module.css';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -13,6 +14,7 @@ export default function ResultPage() {
   const [prediction, setPrediction] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [textColor, setTextColor] = useState('white'); // Default text color
 
   useEffect(() => {
     const predictionId = localStorage.getItem('predictionId');
@@ -38,6 +40,8 @@ export default function ResultPage() {
 
         if (prediction.status === 'failed') {
           setError('Prediction failed. Please try again.');
+        } else if (prediction.output) {
+          analyzeImageColor(prediction.output[prediction.output.length - 1]);
         }
       } catch (err) {
         console.error('Error fetching prediction:', err);
@@ -48,6 +52,32 @@ export default function ResultPage() {
 
     fetchPrediction();
   }, [router]);
+
+  const analyzeImageColor = async (imageUrl) => {
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.src = imageUrl;
+
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      const context = canvas.getContext('2d');
+      context.drawImage(img, 0, 0, img.width, img.height);
+
+      const imageData = context.getImageData(0, 0, img.width, img.height).data;
+      let totalBrightness = 0;
+
+      for (let i = 0; i < imageData.length; i += 4) {
+        const brightness = 0.299 * imageData[i] + 0.587 * imageData[i + 1] + 0.114 * imageData[i + 2];
+        totalBrightness += brightness;
+      }
+
+      const averageBrightness = totalBrightness / (img.width * img.height);
+      setTextColor(averageBrightness > 127 ? 'black' : 'white');
+    };
+  };
 
   const spinnerStyle = {
     width: '50px',
@@ -77,14 +107,22 @@ export default function ResultPage() {
   const resultContent = (
     <>
       {prediction && prediction.status === 'succeeded' && prediction.output && (
-        <div className="image-wrapper"
->
-          <Image
-            src={prediction.output[prediction.output.length - 1]}
-            alt="Generated image"
-            width={378}
-            height={486}
-          />
+        <div className={styles.imageContainer}>
+          <div className={styles.imageWrapper}>
+            <Image
+              src={prediction.output[prediction.output.length - 1]}
+              alt="Generated image"
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
+          <div className={styles.overlay} style={{ color: textColor }}>
+            
+            <div className={styles.textContainer}>
+              <h1 className={styles.heading}>Welcome to your destination</h1>
+              <p className={styles.copyText}>#dreamvacation</p>
+            </div>
+          </div>
         </div>
       )}
     </>
