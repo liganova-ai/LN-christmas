@@ -1,0 +1,32 @@
+.infoPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh; 
+    background-color: #A79FBE; /* Page-specific background color */
+  }
+
+.header {
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 30px 20px; /* MAKE THIS RESPONSIVE */
+width: 100%;
+background: transparent; 
+box-sizing: border-box;
+}
+
+.text {
+    font-family:var(--font-futura);
+    font-weight: 500;
+    font-style: medium; 
+    font-size: 1.2rem;
+    padding-inline: 5%;
+    line-height: 1.5;
+    color: #f3df6e;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: wrap; 
+    text-align: center;
+}
