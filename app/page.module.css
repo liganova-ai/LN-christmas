@@ -32,12 +32,7 @@
   box-sizing: border-box;
 }
 
-.logo {
-  max-width: 20%; /* Dynamic width for responsiveness */
-  height: auto;
-  min-width: 100px; /* Ensure a minimum size for very small screens */
-}
-/* Content section */
+
 .content {
   display: flex;
   flex: 1;
@@ -64,7 +59,7 @@
 .heading {
   font-family: var(--font-sabon);
   font-weight: 800;
-  font-size: 3.5rem; /* Responsive font size */
+  font-size: 4rem; 
   color: #c1363c;
   white-space: normal; 
   overflow: hidden;
@@ -76,8 +71,9 @@
   font-family:var(--font-futura);
   font-weight: 500;
   font-style: medium; 
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.5;
+  padding-inline: 5%;
   color: #f3df6e;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -85,9 +81,8 @@
   text-align: center;
 }
 
-/* Button container */
 .buttonContainer {
-  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 /* Media Queries for Responsive Design */
