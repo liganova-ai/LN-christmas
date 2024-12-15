@@ -1,16 +1,11 @@
-.container {
-  padding: 2rem;
-  font-size: 1.3rem;
-  max-width: 48rem;
-  margin: 0 auto;
-}
+
 
 html, body {
   margin: 0;
   padding: 0;
   height: 100%; /* Ensure full height for body and html */
-  width: 100%; /* Ensure full width for body and html */
-  overflow: hidden; /* Prevent scrolling if not necessary */
+  width: 100%; 
+  overflow: hidden;
 }
  
 form {
