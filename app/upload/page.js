@@ -1,10 +1,12 @@
-'use client';
+"use client";
 
 import { useRouter } from 'next/navigation';
 import { useState, useRef } from 'react';
 import Webcam from 'react-webcam';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
+import styles from './upload.module.css';
+import Logo from '../components/logo';
 
 export default function UploadPage() {
   const router = useRouter();
@@ -31,45 +33,57 @@ export default function UploadPage() {
     }
   };
 
-  const rightContent = (
-    <>
-      {!image ? (
-        <Webcam ref={webcamRef} screenshotFormat="image/jpeg" />
-      ) : (
-        <img src={image} alt="Preview" style={{ maxWidth: '100%', borderRadius: '12px' }} />
-      )}
-    </>
-  );
-
   return (
-    <Layout
-      heading="Take a selfie"
-      copyText="Use your webcam to take a selfie. The expression you have in the image will be translated into the AI art."
-      rightContent={rightContent}
-    >
-      {!image ? (
-        <>
-          <div style={{ display: 'flex',flexDirection: 'column',  gap: '10px' }}>
-            <Button onClick={capturePhoto}>Take Picture</Button>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleUpload}
-              style={{
-                display: 'none',  // Hide the default file input
-              }}
-            />
-            <Button onClick={() => document.querySelector('input[type="file"]').click()}>Upload a Picture</Button>
+    <div className={styles.uploadPage}>
+      <header className={styles.header}>
+        <Logo color="red" />
+      </header>
+      <Layout
+        heading="Una Foto"
+        headingColor="#F3DF6E"
+        copyText="To get the best output from this image generator, ensure good light conditions. Avoid hats or sunglasses, and smile for the best results."
+        copyTextColor="#F3DF6E"
+        middleContent={
+          <div className={styles.webcamContainer}>
+            {!image ? (
+              <Webcam
+                ref={webcamRef}
+                screenshotFormat="image/jpeg"
+                className={styles.webcam}
+              />
+            ) : (
+              <img
+                src={image}
+                alt="Preview"
+                className={styles.imagePreview}
+              />
+            )}
           </div>
-        </>
-      ) : (
-        <>
-         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          <Button onClick={retakePhoto}>Retake Photo</Button>
-          <Button onClick={proceedToTheme}>Use Photo</Button>
-          </div>
-        </>
-      )}
-    </Layout>
-  );
+        }
+      >
+        <div className={styles.footer}>
+          {!image ? (
+            <>
+              <Button onClick={capturePhoto}>Take Selfie</Button>
+              <input
+                type="file"
+                accept="image/*"
+                id="fileUpload"
+                style={{ display: 'none' }}
+                onChange={handleUpload}
+              />
+              <Button onClick={() => document.getElementById('fileUpload').click()}>
+                Upload Picture
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button onClick={retakePhoto}>Retake Photo</Button>
+              <Button onClick={proceedToTheme}>Use Photo</Button>
+            </>
+          )}
+        </div>
+      </Layout>
+    </div>
+  );  
 }
