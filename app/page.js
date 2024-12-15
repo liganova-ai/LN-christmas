@@ -21,7 +21,7 @@ export default function HomePage() {
         </p>
         </div> 
         <div className={styles.buttonContainer}>
-        <Button onClick={() => router.push('/upload')}>Photo e basta</Button>
+        <Button onClick={() => router.push('/info')}>Photo e basta</Button>
         
         </div>
         </div>
