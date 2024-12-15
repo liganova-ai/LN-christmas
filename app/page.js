@@ -1,8 +1,9 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
-import styles from './homepage.module.css';
+import styles from './page.module.css';
 import Button from './components/Button';
+import Logo from './components/logo';
 
 export default function HomePage() {
   const router = useRouter();
@@ -10,21 +11,20 @@ export default function HomePage() {
   return (
     <div className={styles.homePage}>
       <header className={styles.header}>
-        <img src="/logo-left.png" alt="Logo" className={styles.logo} /> {/* Adjust the logo path */}
+        <Logo color="yellow"/> 
       </header>
-
-      <div className={styles.content}> 
-      <div className={styles.leftSection}>
-        <h1 className={styles.heading}>Already dreaming about whats next?</h1>
+      <div className={styles.content}>
+        <div className={styles.textContainer}>
+        <h1 className={styles.heading}>CIAO NATALE</h1>
         <p className={styles.copyText}>
-          Upload a selfie, choose your next travel destination and let the AI do the magic.
+          Dive into the world of AI-generated visuals with our very italian 80s image generator.
         </p>
+        </div> 
         <div className={styles.buttonContainer}>
-        <Button onClick={() => router.push('/upload')}>Start experience</Button>
+        <Button onClick={() => router.push('/upload')}>Photo e basta</Button>
         
         </div>
         </div>
       </div>
-    </div>
   );
 }
