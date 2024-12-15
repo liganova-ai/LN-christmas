@@ -1,0 +1,9 @@
+.logo {
+    font-family:var(--font-luxury); 
+    font-style: 'golden';
+    font-weight: 200;
+    font-size: 16px; 
+    letter-spacing: 5px;
+    z-index: 1000; /* Ensure it stays on top of other elements */
+  }
+  
