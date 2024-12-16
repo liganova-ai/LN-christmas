@@ -41,11 +41,19 @@ export default function PersonaPage() {
   ];
 
   const ethnicityOptions = [
-    { value: 'asian', label: 'Asian' },
-    { value: 'black', label: 'Black' },
-    { value: 'hispanic', label: 'Hispanic' },
-    { value: 'white', label: 'White' },
-    { value: 'other', label: 'Other' },
+    { value: 'African', label: 'African' },
+    { value: 'American', label: 'American' },
+    { value: 'Asian', label: 'Asian' },
+    { value: 'Caribbean', label: 'Caribbean' },
+    { value: 'East-European', label: 'East-European' },
+    { value: 'European', label: 'European' },
+    { value: 'Mediterranean', label: 'Mediterranean' },
+    { value: 'Middle East', label: 'Middle East' },
+    { value: 'Oceanic', label: 'Oceanic' },
+    { value: 'Polynesian', label: 'Polynesian' },
+    { value: 'Scandinavian', label: 'Scandinavian' },
+    { value: 'South American', label: 'South American' },
+    { value: 'Southeast Asian', label: 'Southeast Asian' },
   ];
 
   return (
