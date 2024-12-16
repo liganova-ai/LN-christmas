@@ -1,0 +1,72 @@
+.personaPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #DE75A5; /* Page-specific background color */
+  }
+
+.header {
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 30px 20px; /* Add some padding for spacing */
+width: 100%; /* Take full width of the page */
+background: transparent; 
+box-sizing: border-box;
+}
+
+.dropdownContainer {
+  display: flex;
+  flex-direction: column; /* Ensure proper alignment */
+  justify-content: center; /* Center dropdown inside container */
+  align-items: center; /* Optional: Center alignment */
+  width: 100%; /* Allow full width of container */
+}
+
+
+.container {
+  font-family: var(--font-futura);
+  font-weight: 500;
+  padding: 20px;
+}
+
+.dropdownWrapper {
+  margin-bottom: 20px;
+  min-width: 200px;
+}
+
+.label {
+  font-size: 1.2rem;
+  color: #C32F33;
+  margin-bottom: 10px;
+  display: block;
+  text-align: center;
+}
+
+.react-select__control {
+  background-color: #f0f0f0;
+  border-radius: 500px;
+  min-height: 50px;
+  width: 100%;
+  text-align: left;
+}
+
+.react-select__menu {
+  width: 100%;
+}
+
+.react-select__control:hover {
+  border-color: #888;
+}
+
+.react-select__placeholder {
+  color: #888;
+  font-size: 14px;
+  text-align: left;
+}
+
+.react-select__single-value {
+  font-family: Helvetica, Arial, sans-serif;
+}
