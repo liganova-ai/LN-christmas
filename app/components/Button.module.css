@@ -16,9 +16,6 @@
   cursor: not-allowed;
 }
 
-.button:hover:enabled {
-  background-color: #E00019;
-}
 
 @media (min-width: 768px) {
   .button {
