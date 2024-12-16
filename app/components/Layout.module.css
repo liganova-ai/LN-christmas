@@ -4,25 +4,24 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100vh;
+  height: 100vh; /* Full viewport height */
   padding: 5%;
   box-sizing: border-box;
   text-align: center;
+  overflow: hidden; /* Prevent content overflow */
 }
-
-
 
 /* Heading default styling */
 .heading {
   font-family: var(--font-sabon);
   font-weight: 800;
   margin: 5%;
-  font-size: 4rem; /* Responsive font size */
+  font-size: 4rem; 
   white-space: normal; 
   overflow: hidden;
   text-align: center;
   text-transform: uppercase;
-  text-overflow: ellipsis; /* Add ellipsis if text overflows */
+  text-overflow: ellipsis;
 }
 
 /* Copy text default styling */
@@ -42,19 +41,74 @@
 
 /* Middle content area */
 .middleContent {
-  flex: 1;
+  flex: 1; /* Allow middle content to grow/shrink */
   display: flex;
   justify-content: center;
   align-items: center;
   max-width: 100%;
+  max-height: 100%; /* Prevent content from growing too tall */
 }
 
 /* Footer for buttons */
 .footer {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px; /* Space between buttons */
   width: 100%;
   max-width: 250px;
+  flex-shrink: 0; /* Prevent footer from shrinking */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .layout {
+    padding: 3%;
+  }
+
+  .heading {
+    font-size: 4rem; /* Reduce heading size for tablets */
+    margin: 3%;
+  }
+
+  .copyText {
+    font-size: 1rem; /* Adjust copy text size for smaller devices */
+    padding-inline: 3%;
+  }
+
+  .middleContent {
+    max-height: 60vh; /* Restrict middle content height */
+  }
+
+  .footer {
+    margin-bottom: 10px;
+    gap: 8px;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .layout {
+    padding: 2%;
+  }
+
+  .heading {
+    font-size: 3.5rem; /* Smaller font for mobile */
+    margin: 2%;
+  }
+
+  .copyText {
+    font-size: 0.9rem; /* Smaller text size for mobile */
+    padding-inline: 2%;
+  }
+
+  .middleContent {
+    max-height: 40vh; /* Further restrict middle content height for smaller screens */
+  }
+
+  .footer {
+    margin-bottom: 10px;
+    gap: 5px;
+    max-width: 220px;
+  }
 }
