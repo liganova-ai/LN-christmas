@@ -50,6 +50,11 @@ export default function UploadPage() {
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
                 className={styles.webcam}
+                videoConstraints={{
+                  width: 480,
+                  height: 640, 
+                  facingMode: "user", 
+                }}
               />
             ) : (
               <img
