@@ -5,46 +5,54 @@
   align-items: center;
   height: 100vh;
   background-color: #A79FBE;
+  padding: 5vh 3vw;
+  box-sizing: border-box;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 30px 20px;
   width: 100%;
-  background: transparent;
+  padding: 2vh 0;
   box-sizing: border-box;
 }
 
 .contentWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   text-align: center;
+  gap: 3vh;
+  flex: 1; /* Ensures it expands proportionally */
 }
 
 .text {
   font-family: var(--font-futura);
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: clamp(0.8rem, 2vw, 1.2rem); /* Responsive font size */
   color: #f3df6e;
-  line-height: 1.5;
-  margin-bottom: 20px;
+  line-height: 1.4;
+  margin: 2vh 5%;
 }
 
 .checkboxWrapper {
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  justify-content: center;
+  gap: 1vw;
+  margin: 1vh 5%;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 
 .checkbox {
-  margin-right: 10px;
-  transform: scale(1.2);
+  transform: scale(1);
 }
 
 .checkboxLabel {
   font-family: var(--font-futura);
-  font-size: 0.9rem;
-  color: #ffffff;
+  color: #f3df6e;
 }
 
 .termsLink {
@@ -52,6 +60,8 @@
   color: #f3df6e;
   cursor: pointer;
 }
+
+
 
 .popupOverlay {
   position: fixed;
@@ -68,59 +78,44 @@
 
 .popupContent {
   background-color: #CAC3DD;
-  width: 80%;
+  width: 90%;
   max-width: 600px;
   border-radius: 8px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  max-height: 80%;
-}
-
-.popupHeader {
-  display: flex;
-  justify-content: flex-end;
-  padding: 10px;
-}
-
-.closeIcon {
-  cursor: pointer;
+  max-height: 90%;
 }
 
 .popupBody {
-  padding: 20px;
+  padding: 5%;
   overflow-y: auto;
-  color: #333;
   font-family: var(--font-futura);
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  line-height: 1.5;
+  color: #333;
 }
 
 .popupBody h2 {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2vw, 1.5rem);
   font-weight: bold;
-  margin-top: 20px;
   margin-bottom: 10px;
-  color: #000;
 }
 
-.popupBody p {
-  margin-bottom: 15px;
-}
-
+.popupBody p,
 .popupBody ul {
-  margin-left: -4%;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
-.popupBody li {
-  list-style-type: disc;
-  margin-bottom: 5px;
-}
+@media (max-width: 768px) {
+  .infoPage {
+    padding: 2vh 5vw;
+  }
 
-.popupBody .numbered {
-  font-weight: bold;
-  margin-top: 20px;
-  margin-bottom: 5px;
-  color: #000;
+
+
+  .checkboxWrapper {
+    flex-direction: column;
+    gap: 2vh;
+  }
 }

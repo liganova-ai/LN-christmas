@@ -33,7 +33,7 @@ export default function InfoPage() {
                 The technology is experimental! While guided by rules, please understand that the AI has creative freedom
                 within the images. Enjoy the experience and have a pleasant XMAS time.
               </div>
-              <Image src="/InfoDontShareIcon.svg" alt="Dont share this App" width={100} height={100} />
+              <Image src="/InfoDontShareIcon.svg" alt="Dont share this App" width={200} height={200} />
               <div className={styles.checkboxWrapper}>
                 <input
                   type="checkbox"
