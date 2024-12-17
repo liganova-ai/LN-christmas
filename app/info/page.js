@@ -78,26 +78,26 @@ export default function InfoPage() {
                 <div>
                   <p className={styles.numbered}>1. Introduction</p>
                   <p>
-                    These Terms and Conditions govern your use of the AI Time Machine – Ciao Natale App (the "App"). By using the App, 
+                    These Terms and Conditions govern your use of the AI Time Machine – Ciao Natale App (the `&quot;`App`&quot;`). By using the App, 
                     you agree to be bound by these Terms and Conditions and the accompanying Privacy Policy.
                   </p>
 
                   <p className={styles.numbered}>2. Image Upload</p>
                   <p>
-                    You grant LIGANOVA GmbH ("we", "us", "our") Herdweg 59, 70178 Stuttgart a non-exclusive, worldwide, royalty-free 
-                    license to upload, store, process, and display your images ("the Images") on our servers for AI image editing. 
+                    You grant LIGANOVA GmbH (`&quot;`we`&quot;`, `&quot;`us`&quot;`, `&quot;`our`&quot;`) Herdweg 59, 70178 Stuttgart a non-exclusive, worldwide, royalty-free 
+                    license to upload, store, process, and display your images (`&quot;`the Images`&quot;`) on our servers for AI image editing. 
                     This editing includes the creation of AI-generated selfies that reinterpret your image.
                   </p>
 
                   <p className={styles.numbered}>3. Third-Party Services</p>
                   <p>
-                    Replicate.com: We use Replicate.com ("Replicate"), a third-party service, to perform the AI image editing. 
-                    By using the App, you agree to Replicate's terms of use and privacy policies, which can be found at 
+                    Replicate.com: We use Replicate.com (`&quot;`Replicate`&quot;`), a third-party service, to perform the AI image editing. 
+                    By using the App, you agree to Replicates terms of use and privacy policies, which can be found at 
                     <a href="https://replicate.com/terms" target="_blank" rel="noopener noreferrer"> Replicate Terms</a> and 
                     <a href="https://replicate.com/privacy" target="_blank" rel="noopener noreferrer"> Replicate Privacy</a>.
                   </p>
                   <p>
-                    Netlify: The App and its associated data are hosted by Netlify. By using the App, you agree to Netlify's terms 
+                    Netlify: The App and its associated data are hosted by Netlify. By using the App, you agree to Netlify`&lsquo;`s terms 
                     of use and privacy policies, which can be found at 
                     <a href="https://www.netlify.com/legal/terms-of-use/" target="_blank" rel="noopener noreferrer"> Netlify Terms
                     </a> and 
@@ -107,7 +107,7 @@ export default function InfoPage() {
 
                   <p className={styles.numbered}>4. Image Storage and Use</p>
                   <p>
-                    Your uploaded images and the connected AI creations are stored on Replicate's servers for one hour after processing 
+                    Your uploaded images and the connected AI creations are stored on Replicates servers for one hour after processing 
                     and then deleted completely.
                   </p>
                   <ul>
