@@ -93,17 +93,15 @@ export default function InfoPage() {
                   <p>
                     Replicate.com: We use Replicate.com ("Replicate"), a third-party service, to perform the AI image editing. 
                     By using the App, you agree to Replicate's terms of use and privacy policies, which can be found at 
-                    <a href="https://replicate.com/terms" target="_blank" rel="noopener noreferrer">Replicate Terms</a> and 
-                    <a href="https://replicate.com/privacy" target="_blank" rel="noopener noreferrer">Replicate Privacy</a>.
+                    <a href="https://replicate.com/terms" target="_blank" rel="noopener noreferrer"> Replicate Terms</a> and 
+                    <a href="https://replicate.com/privacy" target="_blank" rel="noopener noreferrer"> Replicate Privacy</a>.
                   </p>
                   <p>
                     Netlify: The App and its associated data are hosted by Netlify. By using the App, you agree to Netlify's terms 
                     of use and privacy policies, which can be found at 
-                    <a href="https://www.netlify.com/legal/terms-of-use/" target="_blank" rel="noopener noreferrer">
-                      Netlify Terms
+                    <a href="https://www.netlify.com/legal/terms-of-use/" target="_blank" rel="noopener noreferrer"> Netlify Terms
                     </a> and 
-                    <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener noreferrer">
-                      Netlify Privacy
+                    <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener noreferrer"> Netlify Privacy
                     </a>.
                   </p>
 
@@ -183,8 +181,8 @@ export default function InfoPage() {
                     Herdweg 59<br />
                     70178 Stuttgart<br />
                     Germany<br />
-                    Email: <a href="mailto:jan.maier@liganova.com">jan.maier@liganova.com</a><br />
-                    Attn: Creative AI Strategist
+                    Email: jan.maier@liganova.com <br />
+                    Attn: Creative AI Strategist <br />
                   </p>
                 </div>
             </div>
