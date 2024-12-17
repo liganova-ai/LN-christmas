@@ -2,47 +2,23 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Select from 'react-select';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
+import styles from './theme.module.css';
+import Logo from '../components/logo';
 
-const customStyles = {
-  control: (base) => ({
-    ...base,
-    fontFamily: 'Helvetica, Arial, sans-serif',
-    backgroundColor: '#f0f0f0',
-    borderRadius: '30px',
-    borderColor: '#ccc',
-    minHeight: '50px',
-    width: '400px',
-    boxShadow: 'none',
-    '&:hover': {
-      borderColor: '#888',
-    },
-  }),
-  menu: (base) => ({
-    ...base,
-    fontFamily: 'Helvetica, Arial, sans-serif',
-    width: '300px',
-  }),
-  placeholder: (base) => ({
-    ...base,
-    color: '#888',
-    fontSize: '14px',
-    fontFamily: 'Helvetica, Arial, sans-serif',
-  }),
-  singleValue: (base) => ({
-    ...base,
-    fontFamily: 'Helvetica, Arial, sans-serif',
-  }),
-};
-
-const themes = ['Miami', 'Antarctica', 'Vietnam', 'Burning Man', 'African Safari'];
+const themes = [
+  { key: "italian_city_flair", svg: "/ItalianCityFlair.svg" },
+  { key: "pool_party", svg: "/PoolParty.svg" },
+  { key: "dance_moves", svg: "/DanceMoves.svg" },
+  { key: "vip_lounge", svg: "/VipLounge.svg" },
+];
 
 export default function ThemePage() {
   const router = useRouter();
   const [image, setImage] = useState(null);
   const [persona, setPersona] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedTheme, setSelectedTheme] = useState(null);
 
   useEffect(() => {
@@ -50,94 +26,168 @@ export default function ThemePage() {
     const storedPersona = localStorage.getItem('persona');
 
     if (storedImage) setImage(storedImage);
-    if (storedPersona) setPersona(JSON.parse(storedPersona));
+    if (storedPersona) {
+      const parsedPersona = JSON.parse(storedPersona);
+
+      // Ensure gender is always lowercase
+      if (parsedPersona.gender) {
+        parsedPersona.gender = parsedPersona.gender.toLowerCase();
+      }
+      console.log(parsedPersona)
+      setPersona(parsedPersona);
+    }
   }, []);
 
-  const themePrompts = {
-    Miami: "Real photography of a [ethnie] [gender] person with [hair colour] [hair type] hair and [accessoires] wearing a shirt and walking with an ice cream on Muscle Beach Miami, in the background people using training stations children’s playing on playground and colorful beach houses, sun high up",
-    Vietnam: "Real photography of a [ethnie] [gender] person with [hair colour] [hair type] hair and [accessoires] standing on rice terraces in Vietnam, traditional workers in the background, scenic mountain view with hundreds of rice field terraces, sun is shining through the mountains",
-    Antarctica: "Real photography of a [ethnie] [gender] person with [hair colour] [hair type] hair  and [accessoires] wearing heavy tactile winter gear while standing on the front railing of an expedition ship, in the background are icebergs with dozens of penguins on top of the iceberg, some penguins jumping into the water, middle of Antarctica",
-    "Burning Man": "Real photography of a [ethnie] [gender] person with [hair colour] [hair type] hair and [accessoires] posing in front of a Mad Max truck with dozens of people partying on top of the truck, racing in the desert through the Burning Man festival, tents surrounding the truck, night time shot",
-    "African Safari": "Real photography of a [ethnie] [gender] person with [hair colour] [hair type] hair and [accessoires] wearing a Safari outfit and sitting inside a safari truck driving through the African savanna, an elephant family and African vegetation in the background",
+  const handleThemeClick = (themeKey) => {
+    setSelectedTheme((prev) => (prev === themeKey ? null : themeKey)); // Toggle selection
   };
 
-
-  const handleThemeSelection = async (selectedOption) => {
+  const handleContinue = async () => {
+    if (!selectedTheme) {
+      alert('Please select a theme before proceeding.');
+      return;
+    }
+  
     if (!image) {
       alert('Image not found! Please upload or capture an image first.');
       return;
     }
-
+  
     if (!persona) {
-      alert('Persona details not found. Please restart.');
+      alert('Gender and Ethnicity details not found. Please restart.');
       return;
     }
-
-    const { gender, facialFeatures, hairLength, hairColor, ethnicity } = persona;
-
-    const selectedPrompt = themePrompts[selectedOption.value];
-
-    const combinedPrompt = selectedPrompt
-      .replace("[ethnie]", ethnicity.join(" or "))
-      .replace("[gender]", gender.join(" or "))
-      .replace("[hair colour]", hairColor.join(" and "))
-      .replace("[hair type]", hairLength.join(" and "))
-      .replace("[accessoires]", facialFeatures.join(", "));
   
-    console.log('Final Prompt:', combinedPrompt);
+    const { gender, ethnicity } = persona;
+    
+  
+    // Normalize ethnicity as an array
+    const ethnicityArray = Array.isArray(ethnicity) ? ethnicity : [ethnicity];
+  
+
+  
+    // Normalize theme key: Convert to lowercase and replace spaces with underscores
+    const normalizedTheme = selectedTheme.toLowerCase().replace(/ /g, "_");
+  
+    const selectedPromptKey = `${normalizedTheme}_${gender.toLowerCase()}`;
+    console.log("selected prompt key lower:", selectedPromptKey);
+  
+    const selectedPrompt = themePrompts[selectedPromptKey];
+    console.log("Selected Prompt:", selectedPrompt);
+  
+    if (!selectedPrompt) {
+      alert(`Prompt not found for theme: ${selectedPrompt}`);
+      return;
+    }
+  
+    const combinedPrompt = selectedPrompt.replace("[ethnicity]", ethnicityArray.join(" "));
+    console.log("Combined Prompt:", combinedPrompt);
 
     try {
+      setIsLoading(true);
       const response = await fetch('/api/predictions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt: combinedPrompt, main_face_image: image }),
       });
+
       const prediction = await response.json();
+      setIsLoading(false);
 
       if (response.status !== 201) {
         alert(`Error: ${prediction.detail}`);
         return;
       }
 
-      // save and send prediction id to result page 
       localStorage.setItem('predictionId', prediction.id);
-      router.push('/result');
+      router.push('/loading');
     } catch (error) {
       console.error('Error during theme selection:', error);
       alert('An error occurred. Please try again.');
+      setIsLoading(false);
     }
   };
 
-  // Dropdown content
-  const themeOptions = themes.map((theme) => ({ value: theme, label: theme }));
-
-  const dropdownContent = (
-    <div>
-      <label style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '20px', color: '#333', marginBottom: '10px', display: 'block'}}>Travel destination:</label>
-      <Select
-        options={themeOptions}
-        onChange={handleThemeSelection}
-        placeholder="Select Travel Destination"
-        styles={customStyles} 
-      />
-    </div>
-  );
+  const themePrompts = {
+    "italian_city_flair_female": "Polaroid of a [ethnicity] women in a 1980 outfit, with long high waist pants, tailored blouse, a wide-brimmed hat and dark black cat-eye sunglasses, including golden necklace and earrings, red lipstick and blush make up, walking down an Italian street, confident and sassy model walk, holding her designer handbag in the left hand, for a hot day, Gianni Versace, Dolce e Gabanna, 80s italian Fiat driving in italian neigbbourhood, dolce vita lifestyle with people sitting at cafes Italian neighbourhood enjoying life, Kodak 5247 film stock, movie-still photography, flashlight photography, sun shining, thin polaroid frame, bloom, faded colours, old picture, Saturday night fever",
+    "italian_city_flair_male": "Polaroid of a [ethnicity] man dressed in a 1980 double-breasted tailored suit with a soft colour palette, open shirt with chest hair revealing, wearing aviator sunglasses a mafioso beard and a fedora hat walking down an Italian street, large golden watch, mafiosi chiccolo style, daylight with a beige colour scheme, 1980 cars driving by, dolce vita lifestyle with people sitting at cafes Italian neighbourhood enjoying life, Kodak 5247 film stock, movie-still photography, flashlight photography, sun shining, thin polaroid frame, bloom, faded colours, old picture, Saturday night fever",
+    "pool_party_female": "Polaroid of a [ethnicity] European woman dressed in a 1980s bold orange full-body swimsuit by Gianni Versace and Dolce e Gabanna, black sharp-edged cat-eye sunglasses and deep red lipstick, white towel wrapped around the head, lying on a sunbed with sunshade next to a pool, a glass of Aperol Spritz in a wine glass and an ashtray on a side table, in the background an 80s Playboy pool party with people, Luxurious Italian neighbourhood with 80s architecture, people swimming in the water and jumping into the pool, enjoy dolce vita life, Kodak 5247 film stock, flashlight photography, sun shining, thin polaroid frame, bloom, faded colours, old picture, Saturday night fever, desperate housewives, Baywatch", 
+    "pool_party_male": "Polaroid of a [ethnicity] man dressed in a 1980 bold pattern coloured shirt by Gianni Versace, an open shirt with chest hair revealing, a heavy golden necklace and a large golden watch, wearing transparent aviator glasses with a thick beard, a fedora hat, sitting on a white table full with seafood Michelin star and champagne, in the background an 80s Playboy pool party in the Italian neighbourhood with 80s architecture, people enjoy dolce vita life, Kodak 5247 film stock, flashlight photography, sun shining, thin polaroid frame, bloom, faded colours, old picture, Saturday night fever",
+    "dance_moves_female": "Polaroid of a [ethnicity] woman in a club environment fully dressed in 80s fashion, Bold 80s jumpsuit in light blue colour with broad shoulder, high waisted wide belt, red lipstick and blush on checks, sharp edgy cat-eye sunglasses, performing dance moves, spotlight shining on the person in the centre, white spotlight and smoke in the fully silver background made of hundreds of disco balls and silver sequins reflecting light, mystic club moment, 1980s Gianni Versace collection, inspired by Dolce e Gabbana, 1980s disco party, 80s colours, Saturday Night Fever, Flashlight Celebrity Photography, white polaroid frame, faded colours",
+    "dance_moves_male": "Polaroid of a [ethnicity] man in an 80s club environment fully dressed in 80s fashion, Bold 80s pattern silk shirt in vibrant colours unbuttoned with thick black chest hair and white high-waisted tight pants with a golden watch and aviator sunglasses 80s haircut mullet, performing dance moves, spotlight shining on the person in the centre, white spotlight and smoke in the fully silver background made of hundreds of disco balls and silver sequins reflecting light, mystic club moment, 1980s Gianni Versace collection, inspired by Dolce e Gabbana, 1980s disco party, 80s colours, Saturday Night Fever, Flashlight Photography, white polaroid frame, faded colours",
+    "vip_lounge_female": "Polaroid of a [ethnicity] woman in a club environment sitting on a black couch with silver panels in the back, 80s Italian bar-restaurant, high society club, a woman dressed in 80s bold sequin luxurious jumpsuit in Dolce e Gabanna In silver wearing sharp edged cat eye sunglasses, enjoying her champagne, handbag on the table next to pieces of pizza and champagne, silver club environment, silver background, 1980s Gianni Versace collection, inspired by Dolce e Gabbana, 1980s disco party, 80s colours, Saturday Night Fever, Flashlight celebrity Photography, big white polaroid frame, faded colours, disco balls and sequins in reflection, kim kardashian",
+    "vip_lounge_male": "Polaroid of a [ethnicity] man inside a VIP club environment leaning forward with one leg apart on a black couch with silver panels in the back, 80s Italian bar-restaurant, high society club, a man dressed in an 1980s double-breasted light grey wide shoulder blazer and a white shirt revealing chest hair, 80s glasses a fedora hat with a strong moustache smoking a cigar, Mafioso style golden jewellery and fat watch, ashtray on the table next to pieces of pizza and champagne, silver club environment, monotone silver background, 1980s Gianni Versace collection, inspired by Dolce e Gabbana, 1980s disco party, 80s colours, Saturday Night Fever, Flashlight celebrity Photography, big white polaroid frame, faded colours, disco balls and sequins in reflection, nighttime photography"
+  };
 
   return (
-    <Layout
-      heading="Scene"
-      copyText="Now comes the important part. In which travel destination will you envision yourself next?"
-      rightContent={dropdownContent}
-    >
-      <div className="left-content">
-        {image ? (
-          <>
-            <Button onClick={() => handleThemeSelection(selectedTheme)}>Next</Button>
-          </>
-        ) : (
-          <p>Loading image...</p>
-        )}
-      </div>
-    </Layout>
+    <div className={styles.themePage}>
+      <header className={styles.header}>
+        <Logo color="yellow"/> 
+      </header>
+
+      <Layout heading="THEME" headingColor='#DE75A5'>
+        <div className={styles.themeContainer}>
+          <div className={styles.themeRow}>
+            <h2 className={styles.themeHeading}>CIAO NATALE</h2>
+            <p className={styles.themeCopy}>Vacation back in the 80s</p>
+            <div className={styles.svgContainer}>
+              {themes.slice(0, 2).map((theme) => (
+                <div
+                  key={theme.key}
+                  className={`${styles.themeWrapper} ${
+                    selectedTheme === theme.key ? styles.selected : ''
+                  }`}
+                  onClick={() => handleThemeClick(theme.key)}
+                >
+                  <img
+                    src={theme.svg}
+                    alt={theme.key}
+                    className={styles.themeSvg}
+                  />
+                  {selectedTheme === theme.key && (
+                    <img
+                      src="/select_circle.svg"
+                      alt="Selected Overlay"
+                      className={styles.selectOverlay}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.themeRow}>
+            <h2 className={styles.themeHeading}>ITALO DISCO</h2>
+            <p className={styles.themeCopy}>Hot and important</p>
+            <div className={styles.svgContainer}>
+              {themes.slice(2).map((theme) => (
+                <div
+                  key={theme.key}
+                  className={`${styles.themeWrapper} ${
+                    selectedTheme === theme.key ? styles.selected : ''
+                  }`}
+                  onClick={() => handleThemeClick(theme.key)}
+                >
+                  <img
+                    src={theme.svg}
+                    alt={theme.key}
+                    className={styles.themeSvg}
+                  />
+                  {selectedTheme === theme.key && (
+                    <img
+                      src="/select_circle.svg"
+                      alt="Selected Overlay"
+                      className={styles.selectOverlay}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <Button onClick={handleContinue}>Continue</Button>
+      </Layout>
+    </div>
   );
 }

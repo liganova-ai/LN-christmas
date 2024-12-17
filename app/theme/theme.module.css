@@ -1,0 +1,113 @@
+.themePage {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    min-height: 100vh;
+    flex-grow: 1;
+    width: 100%; 
+    overflow: hidden; 
+    background-color: #A7C0E4;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    justify-content: center; /* Space content evenly between header, body, and footer */
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px; 
+    width: 100%; 
+    background: transparent; 
+    box-sizing: border-box;
+  }
+  
+  .themeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    width: 100%;
+    gap: 30px; /* Maintain spacing */
+    padding: 0; 
+    box-sizing: border-box;
+    height: calc(100vh - 250px) !important;
+  }
+  
+  .themeRow {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .themeHeading {
+    font-family: var(--font-sabon);
+    font-weight: 800;
+    font-size: 1.5rem; 
+    white-space: normal; 
+    overflow: hidden;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    color: #DE75A5;
+    margin-bottom: 1%;
+  }
+  
+  .themeCopy {
+    font-family: var(--font-futura);
+    font-weight: 500;
+    font-size: 0.75rem;
+    color: #DE75A5;
+    margin: 1% 0; 
+  }
+  
+  .svgContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .themeWrapper:hover .themeSvg {
+    transform: scale(1.1);
+  }
+  
+  .selectOverlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110%;
+    height: 110%;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .themeWrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: 20vw; /* Dynamically sized based on viewport */
+    max-width: 120px;
+    height: auto;
+  }
+  
+  .themeSvg {
+    width: 100%;
+    height: auto;
+    transition: transform 0.2s ease;
+  }
+  
+  @media (max-width: 768px) {
+    .themeWrapper {
+      width: 25vw; /* Slightly smaller size for tablets */
+      max-width: 100px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .themeWrapper {
+      width: 30vw; /* Smaller size for mobile */
+      max-width: 80px;
+    }
+  }
+  
