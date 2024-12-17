@@ -129,7 +129,7 @@ export default function ThemePage() {
         <div className={styles.themeContainer}>
           <div className={styles.themeRow}>
             <h2 className={styles.themeHeading}>CIAO NATALE</h2>
-            <p className={styles.themeCopy}>Vacation back in the 80s</p>
+            <p className={styles.themeCopy}>80s vacation in Italy</p>
             <div className={styles.svgContainer}>
               {themes.slice(0, 2).map((theme) => (
                 <div
@@ -158,7 +158,7 @@ export default function ThemePage() {
 
           <div className={styles.themeRow}>
             <h2 className={styles.themeHeading}>ITALO DISCO</h2>
-            <p className={styles.themeCopy}>Hot and important</p>
+            <p className={styles.themeCopy}>Party like its the 80s</p>
             <div className={styles.svgContainer}>
               {themes.slice(2).map((theme) => (
                 <div

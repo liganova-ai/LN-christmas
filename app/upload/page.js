@@ -41,7 +41,7 @@ export default function UploadPage() {
       <Layout
         heading="Una Foto"
         headingColor="#F3DF6E"
-        copyText="To get the best output from this image generator, ensure good light conditions. Avoid hats or sunglasses, and smile for the best results."
+        copyText="To get the best output,please consider the following: 1. One person in the image. 2. Aim for good light conditions. 3. Don't wear sunglasses or hats. 4. Smile!"
         copyTextColor="#F3DF6E"
         middleContent={
           <div className={styles.webcamContainer}>
@@ -83,7 +83,7 @@ export default function UploadPage() {
             </>
           ) : (
             <>
-              <Button onClick={retakePhoto}>Retake Photo</Button>
+              <Button onClick={retakePhoto}>Try again</Button>
               <Button onClick={proceedToTheme}>Use Photo</Button>
             </>
           )}

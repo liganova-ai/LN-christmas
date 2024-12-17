@@ -64,7 +64,7 @@ export default function PersonaPage() {
       <Layout
         heading="GENERE"
         headingColor="#F3DF6E"
-        copyText="Please help our AI to define your gender. We apologize for any inconvenience towards gender fluid people."
+        copyText="Please help the AI to create a better output by providing information about your ethnicity and gender. Due to short time, we can only provide 2 gender options and apologize for the inconvenience.  This information will not be saved. "
         copyTextColor="#F3DF6E"
         middleContent={
           <div className={styles.container}>
