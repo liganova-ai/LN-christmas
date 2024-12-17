@@ -28,11 +28,11 @@ export default function HomePage() {
           </div>
         </div>
         <p className={styles.copyText}>
-          Dive into the world of AI-generated visuals with our very italian 80s image generator.
+          Travel back to the 80s and create AI-generated images of yourself. Upload a selfie and choose between four different scenes. The AI will perform the magic.
         </p>
         </div> 
         <div className={styles.buttonContainer}>
-        <Button onClick={() => router.push('/info')}>Photo e basta</Button>
+        <Button onClick={() => router.push('/info')}>Continue</Button>
         
         </div>
         </div>
