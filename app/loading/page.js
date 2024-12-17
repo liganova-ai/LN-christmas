@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Layout from '../components/Layout';
 import styles from './loading.module.css';
+import Logo from '../components/logo';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -50,14 +51,21 @@ export default function LoadingPage() {
   }, [router]);
 
   return (
+    <div className={styles.loadingPage}>
+      <header className={styles.header}>
+        <Logo color="yellow"/> 
+      </header>
     <Layout
-      heading="UNO MOMENTO"
-      copyText="traveling back to the 80s"
+      heading="UN MOMENTO PER FAVORE"
+      headingColor='#DE75A5'
+      copyText="Traveling back to the 80s..."
+      copyTextColor='#DE75A5'
       middleContent={
         <div className={styles.loaderWrapper}>
           <div className={styles.loader}></div>
         </div>
       }
     />
+    </div>
   );
 }
