@@ -1,61 +1,80 @@
-.imageContainer {
-    position: relative;    
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.resultPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  background-color: #DADAB2;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  width: 100%;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 250px; /* Adjusted width */
+  height: 350px; /* Adjusted height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0.95); /* Scale down both image and overlay */
+}
+
+.generatedImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.customButton {
+  background-color: #DE75A5;
+  color: #FFE163;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1rem; /* Responsive font size */
+  padding: 10px 50px; /* Adjust padding for smaller buttons */
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  text-align: center;
+  line-break: strict;
   
-  .imageWrapper {
-    position: static !important;
-    width: 378px; /* Maintain the vertical aspect ratio */
-    height: 486px;
-    overflow: hidden;
+}
+
+.customButton:hover {
+  background-color: #C9608D;
+}
+
+@media (min-width: 768px) {
+  .customButton {
+    font-size: 1.25rem;
+    padding: 10px 70px;
   }
-  
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Space elements at top and bottom */
-    pointer-events: none; /* Let clicks pass through the overlay */
-  }
-  
-  
-  .logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50px; /* Adjust the size as needed */
-    height: auto;
-    object-fit: contain;
-    z-index: 10; /* Ensure it's above the image */
-  }
-  
-  .textContainer {
-    position: absolute;
-    bottom: 20px; /* Position at the bottom of the image */
-    width: 100%;
-    text-align: center;
-  }
-  
-  .heading {
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0;
-    color: inherit; /* Use dynamic color based on brightness */
-  }
-  
-  .copyText {
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 1rem;
-    margin-top: 10px;
-    color: inherit; /* Use dynamic color based on brightness */
-  }
+}
 
