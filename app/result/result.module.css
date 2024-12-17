@@ -1,5 +1,5 @@
 .imageContainer {
-    position: relative;
+    position: relative;    
     width: 100%;
     height: 100%;
     display: flex;
@@ -8,7 +8,7 @@
   }
   
   .imageWrapper {
-    position: relative;
+    position: static !important;
     width: 378px; /* Maintain the vertical aspect ratio */
     height: 486px;
     overflow: hidden;
@@ -58,4 +58,4 @@
     margin-top: 10px;
     color: inherit; /* Use dynamic color based on brightness */
   }
-  
+
