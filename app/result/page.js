@@ -6,7 +6,7 @@ import Layout from '../components/Layout';
 import Image from 'next/image';
 import styles from './result.module.css';
 import Logo from '../components/logo';
-import html2canvas from 'html2canvas';
+import { toPng } from 'html-to-image';
 
 export default function ResultPage() {
   const router = useRouter();
@@ -31,11 +31,25 @@ export default function ResultPage() {
 
   const handleDownload = async () => {
     if (imageRef.current) {
-      const canvas = await html2canvas(imageRef.current);
-      const link = document.createElement('a');
-      link.href = canvas.toDataURL('image/png');
-      link.download = 'xmas24-ai-timemachine.png';
-      link.click();
+      try {
+        const dataUrl = await toPng(imageRef.current, {
+          width: 250,
+          height: 350,
+          canvasWidth: 896,
+          canvasHeight: 1152,
+          style: {
+            transform: 'scale(1)',
+            transformOrigin: 'top left',
+          },
+        });
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = 'xmas24-ai-timemachine.png';
+        link.click();
+      } catch (error) {
+        console.error('Error generating image:', error);
+        alert('An error occurred while generating the image.');
+      }
     }
   };
 
@@ -55,8 +69,8 @@ export default function ResultPage() {
               <Image
                 src={prediction.output[prediction.output.length - 1]}
                 alt="Generated Image"
-                width={600}
-                height={800}
+                width={896}
+                height={1152}
                 objectFit="cover"
                 className={styles.generatedImage}
               />
