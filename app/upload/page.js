@@ -7,6 +7,7 @@ import Layout from '../components/Layout';
 import Button from '../components/Button';
 import styles from './upload.module.css';
 import Logo from '../components/logo';
+import imageCompression from 'browser-image-compression';
 
 export default function UploadPage() {
   const router = useRouter();
@@ -26,11 +27,64 @@ export default function UploadPage() {
 
   const retakePhoto = () => setImage(null);
 
-  const proceedToTheme = () => {
+  const proceedToTheme = async () => {
     if (image) {
-      localStorage.setItem('uploadedImage', image);
-      router.push('/persona');
+      try {
+        // Compress the image
+        const options = {
+          maxSizeMB: 1, // Maximum size in MB
+          maxWidthOrHeight: 1024, // Resize to a maximum width or height
+          useWebWorker: true, // Use web worker for better performance
+        };
+        const compressedFile = await imageCompression(dataURItoBlob(image), options);
+        const compressedImage = await blobToBase64(compressedFile);
+  
+        // Send compressed image to the server
+        const response = await fetch("/.netlify/functions/save_image", {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ uploadedImage: compressedImage, generatedImage: '' }),
+        });
+  
+        if (!response.ok) {
+          const errorDetails = await response.text();
+          console.error('Server response:', errorDetails);
+          alert(`Error uploading image to the server. Status: ${response.status}`);
+          return;
+        }
+  
+        const data = await response.json();
+        console.log('Image saved successfully:', data);
+        localStorage.setItem('uploadedImage', image)
+        localStorage.setItem('uploadedImageId', data.id);
+        router.push('/persona');
+      } catch (error) {
+        console.error('Network or server error:', error);
+        alert('Error uploading image to the server.');
+      }
     }
+  };
+  
+  // Helper to convert Data URI to Blob
+  const dataURItoBlob = (dataURI) => {
+    const byteString = atob(dataURI.split(',')[1]);
+    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: mimeString });
+  };
+  
+  // Helper to convert Blob to Base64
+  const blobToBase64 = (blob) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
   };
 
   return (

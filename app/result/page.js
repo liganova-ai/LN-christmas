@@ -15,14 +15,34 @@ export default function ResultPage() {
 
   useEffect(() => {
     const storedPrediction = localStorage.getItem('predictionResult');
+    const uploadedImageId = localStorage.getItem('uploadedImageId'); // Retrieve uploaded image ID
+    console.log('uploadedImageId:', uploadedImageId)
 
-    if (!storedPrediction) {
-      alert('No prediction result found. Please restart.');
+    if (!storedPrediction || !uploadedImageId) {
+      alert('No prediction result or uploaded image found. Please restart.');
       router.push('/');
       return;
     }
 
-    setPrediction(JSON.parse(storedPrediction));
+    const predictionData = JSON.parse(storedPrediction);
+    setPrediction(predictionData);
+
+    // Save generated image to the database
+    const saveGeneratedImage = async () => {
+      try {
+        const generatedImage = predictionData.output[predictionData.output.length - 1]; // Final generated image
+        await fetch(`/.netlify/functions/save_image`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: uploadedImageId, generatedImage }),
+        });
+      } catch (error) {
+        console.error('Error updating generated image:', error);
+        alert('Failed to save generated image to the database.');
+      }
+    };
+
+    saveGeneratedImage();
   }, [router]);
 
   const handleRepeat = () => {
