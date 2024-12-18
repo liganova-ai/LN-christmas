@@ -32,15 +32,15 @@ export default function ResultPage() {
   const handleDownload = async () => {
     if (imageRef.current) {
       try {
+        const wrapper = imageRef.current.getBoundingClientRect(); // Get actual dimensions
+        const aspectRatio = wrapper.width / wrapper.height;
+  
+        const canvasWidth = 896; // Base width for high resolution
+        const canvasHeight = canvasWidth / aspectRatio; // Maintain aspect ratio
+  
         const dataUrl = await toPng(imageRef.current, {
-          width: 250,
-          height: 350,
-          canvasWidth: 896,
-          canvasHeight: 1152,
-          style: {
-            transform: 'scale(1)',
-            transformOrigin: 'top left',
-          },
+          canvasWidth,
+          canvasHeight,
         });
         const link = document.createElement('a');
         link.href = dataUrl;
@@ -52,6 +52,7 @@ export default function ResultPage() {
       }
     }
   };
+  
 
   return (
     <div className={styles.resultPage}>

@@ -34,6 +34,7 @@
 .overlay {
   position: relative;
   z-index: 2;
+  transform: scale(1.05);
 }
 
 .buttonContainer {
