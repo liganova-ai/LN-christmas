@@ -7,9 +7,6 @@ const MONGO_URI = process.env.MONGO_URI; // Use environment variable
 const DB_NAME = 'xmasliganova24';
 const COLLECTION_NAME = 'images';
 
-
-
-
 let client;
 
 async function connectToDatabase() {
@@ -42,8 +39,11 @@ exports.handler = async (event) => {
         body: JSON.stringify({ message: 'Image saved successfully', id: result.insertedId }),
       };
     } catch (error) {
-      console.error('Error saving image:', error);
-      return { statusCode: 500, body: JSON.stringify({ error: 'Failed to save image' }) };
+      console.error('Error saving image:', error.message, error.stack);
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: 'Failed to save image', details: error.message }),
+      };
     }
   } else if (event.httpMethod === 'PATCH') {
     try {
