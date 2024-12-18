@@ -67,17 +67,17 @@
   }
 
   .heading {
-    font-size: 4rem; /* Reduce heading size for tablets */
+    font-size: 4rem; 
     margin: 3%;
   }
 
   .copyText {
-    font-size: 1rem; /* Adjust copy text size for smaller devices */
+    font-size: 1rem; 
     padding-inline: 3%;
   }
 
   .middleContent {
-    max-height: 60vh; /* Restrict middle content height */
+    max-height: 60%; /* Restrict middle content height */
   }
 
   .footer {
@@ -103,7 +103,7 @@
   }
 
   .middleContent {
-    max-height: 40vh; /* Further restrict middle content height for smaller screens */
+    max-height: 60%; /* Further restrict middle content height for smaller screens */
   }
 
   .footer {

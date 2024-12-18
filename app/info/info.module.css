@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   background-color: #A79FBE;
   padding: 5vh 3vw;
   box-sizing: border-box;
@@ -39,6 +39,7 @@
 
 .checkboxWrapper {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 1vw;
@@ -53,6 +54,7 @@
 .checkboxLabel {
   font-family: var(--font-futura);
   color: #f3df6e;
+  text-align: left;
 }
 
 .termsLink {
@@ -115,7 +117,7 @@
 
 
   .checkboxWrapper {
-    flex-direction: column;
+    flex-direction: row;
     gap: 2vh;
   }
 }

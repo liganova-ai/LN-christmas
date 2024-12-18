@@ -42,7 +42,7 @@ export default function InfoPage() {
                   className={styles.checkbox}
                 />
                 <label htmlFor="termsCheckbox" className={styles.checkboxLabel}>
-                  By clicking the button I agree to the{' '}
+                  I agree to the{' '}
                   <span
                     className={styles.termsLink}
                     onClick={() => setShowPopup(true)}
