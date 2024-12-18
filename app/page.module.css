@@ -1,191 +1,132 @@
-/* Root container styling */
-
 .html, .body {
   margin: 0;
   padding: 0;
-  height: 100%; /* Ensure full height for body and html */
-  width: 100%; 
+  height: 100%;
+  width: 100%;
   overflow: hidden;
 }
 
 .homePage {
   display: flex;
   flex-direction: column;
-  height: 100%; /* Exact viewport height, no vertical scroll */
-  width: auto; /* Exact viewport width, no horizontal scroll */
-  overflow: hidden; /* Prevent both vertical and horizontal scroll */
+  height: 100%;
+  width: 100%;
   background-color: #a89fbe;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 
-/* Header section */
 .header {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 30px 20px; /* Add some padding for spacing */
-  width: 100%; /* Take full width of the page */
-  background: transparent; /* Transparent background if needed */
+  padding: 30px 20px; 
+  width: 100%; 
+  background: transparent; 
   box-sizing: border-box;
 }
 
 
+/* Main content area */
 .content {
   display: flex;
   flex: 1;
-  padding: 5%;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
-  overflow: hidden; 
-  max-width: 100%; 
-  height: 100%; 
+  align-items: center;
+  padding: 5%;
+  text-align: center;
 }
 
+.textContainerWrapper {
+  display: flex;
+  flex: 1; 
+  justify-content: center; 
+  align-items: center; 
+  width: 100%;
+}
 
+/* Text container (shared for both screens) */
 .textContainer {
   display: flex;
-  flex-direction: column; /* Stack the title and copy text vertically */
-  align-items: center; /* Center items horizontally */
-  justify-content: center; /* Center items vertically */
-  padding: 5%; /* Add some padding around the container */
-  padding-bottom: 15%;
-  gap: 20px; /* Space between the title and the copy text */
-  text-align: center; /* Center-align text content */
-  width: 100%; /* Full width */
-  height: 100%; /* Ensure it fills the available space */
-}
-
-
-
-.heading {
-  font-family: var(--font-sabon);
-  font-weight: 800;
-  font-size: 4rem; 
-  color: #c1363c;
-  white-space: normal; 
-  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
   text-align: center;
-  text-overflow: ellipsis; 
-}
-
-.imageWrapper {
-  position: relative; /* Required for Image fill */
-  width:100%; 
-  max-width: 500px; 
-  aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+  width: 100%;
+  max-width: 500px;
 }
 
 .headingContainer {
-  width: 100%; 
+  width: 100%;
   display: flex;
-  justify-content: center; /* Center align image horizontally */
+  justify-content: center;
   align-items: center;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 16 / 9;
 }
 
 .headingImage {
   object-fit: contain;
 }
 
-.copyText {
-  font-family:var(--font-futura);
-  font-weight: 500;
-  font-style: medium; 
-  font-size: 1.2rem;
-  line-height: 1.5;
-  padding-inline: 5%;
-  color: #f3df6e;
-  text-overflow: ellipsis;
-  white-space: wrap; 
-  text-align: center;
-}
-
-.buttonContainer {
-  margin-bottom: 30px;
-}
-
-
-
-/* Media Queries for Responsive Design */
-
-
-@media (max-width: 480px) {
-  .buttonContainer {
-    margin-bottom: 10px;
-    gap: 5px;
-    max-width: 220px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .content {
-    padding: 50px;
-  }
-
-  .logo {
-    max-width: 250px;
-  }
-
-  .heading {
-    font-size: 4rem;
-  }
-
-  .copyText {
-    font-size: 1.5rem;
-  }
-}
-
-
-
-
-.passwordOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.passwordModal {
-  background: #DE75A5;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-  text-align: center;
-  width: 300px;
-}
-
-.modalHeading {
-  font-size: 1.5rem;
-  font-family: var(--font-futura);
-  color: #F3DF6E;
-  margin-bottom: 1rem;
-
-}
-
+/* Password input styling */
 .passwordInput {
   width: 100%;
+  max-width: 300px;
   font-family: var(--font-futura);
-  padding: 0.5rem;
-  margin: 1rem 0;
-  border: 1px solid #A7C0E4;
+  padding: 0.75rem;
+  border: none;
+  background-color: #fff;
   border-radius: 30px;
+  color: #b5b5b5;
+  text-align: left;
   font-size: 1rem;
 }
 
-.errorText {
-  color: #F3DF6E;
+.passwordInput::placeholder {
+  color: #b5b5b5;
+}
+
+.copyText {
   font-family: var(--font-futura);
-  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #f3df6e;
+  text-align: center;
+  padding-inline: 6%;
+}
+
+.errorText {
+  color: #ff6f6f;
+  font-family: var(--font-futura);
   font-size: 0.9rem;
 }
 
+
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  margin-top: auto; /* Pushes button to bottom of flex container */
+}
+
+@media (max-width: 480px) {
+  .buttonContainer {
+    padding: 20px 0;
+  }
+
+  .passwordInput {
+    max-width: 80%;
+  }
+
+  .copyText {
+    font-size: 0.9rem;
+    padding-inline: 15%;
+  }
+}
