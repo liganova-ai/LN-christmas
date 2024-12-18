@@ -112,3 +112,31 @@
     max-width: 220px;
   }
 }
+
+/*SE*/
+
+@media (max-width: 380px) {
+  .layout {
+    padding: 2%;
+  }
+
+  .heading {
+    font-size: 3rem; 
+    margin: 2%;
+  }
+
+  .copyText {
+    font-size: 0.8rem;
+    padding-inline: 2%;
+  }
+
+  .middleContent {
+    max-height: 60%; 
+  }
+
+  .footer {
+    margin-bottom: 10px;
+    gap: 5px;
+    max-width: 220px;
+  }
+}

@@ -24,7 +24,7 @@
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  gap: 3vh;
+  gap: 10px;
   flex: 1; /* Ensures it expands proportionally */
 }
 
