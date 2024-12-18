@@ -123,6 +123,7 @@
   .heading {
     font-size: 3rem; 
     margin: 2%;
+    padding-inline: 5%;
   }
 
   .copyText {
