@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 import Button from './components/Button';
@@ -15,9 +15,18 @@ export default function HomePage() {
 
   const correctPassword = process.env.NEXT_PUBLIC_APP_PASSWORD;
 
+  useEffect(() => {
+    // Check if the user has previously entered the password
+    const accessFlag = localStorage.getItem("hasAccess");
+    if (accessFlag === "true") {
+      setHasAccess(true);
+    }
+  }, []); // Runs only once on page load
+
   const handlePasswordSubmit = () => {
     if (password === correctPassword) {
       setHasAccess(true);
+      localStorage.setItem("hasAccess", "true");
       setError(""); // Clear any error messages
     } else {
       setError("Incorrect password. Please try again.");
