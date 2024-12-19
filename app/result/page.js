@@ -58,10 +58,14 @@ export default function ResultPage() {
         const canvasWidth = 896; // Base width for high resolution
         const canvasHeight = canvasWidth / aspectRatio; // Maintain aspect ratio
 
-        const dataUrl = await toPng(imageRef.current, {
-          canvasWidth,
-          canvasHeight,
-        });
+              // Safari workaround: call toPng three times
+        let dataUrl;
+        for (let i = 0; i < 3; i++) {
+          dataUrl = await toPng(imageRef.current, {
+            canvasWidth,
+            canvasHeight,
+          });
+        }
         const link = document.createElement('a');
         link.href = dataUrl;
         link.download = 'xmas24-ai-timemachine.png';
