@@ -17,6 +17,7 @@
   font-weight: 800;
   margin: 5%;
   font-size: 4rem; 
+  line-height: 1;
   white-space: normal; 
   overflow: hidden;
   text-align: center;
@@ -31,8 +32,7 @@
   font-style: medium; 
   font-size: 1.2rem;
   padding-inline: 5%;
-  margin: 0px 10%;
-  line-height: 1.5;
+  line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: wrap; 
@@ -73,7 +73,6 @@
 
   .copyText {
     font-size: 1rem; 
-    padding-inline: 3%;
   }
 
   .middleContent {
@@ -93,13 +92,11 @@
   }
 
   .heading {
-    font-size: 3.7rem; /* Smaller font for mobile */
-    margin: 2%;
+    font-size: 3.3rem; /* Smaller font for mobile */
   }
 
   .copyText {
     font-size: 0.9rem; /* Smaller text size for mobile */
-    padding-inline: 2%;
   }
 
   .middleContent {
@@ -122,13 +119,10 @@
 
   .heading {
     font-size: 3rem; 
-    margin: 2%;
-    padding-inline: 5%;
   }
 
   .copyText {
     font-size: 0.8rem;
-    padding-inline: 2%;
   }
 
   .middleContent {

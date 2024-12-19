@@ -95,7 +95,13 @@ export default function UploadPage() {
       <Layout
         heading="Una Foto"
         headingColor="#F3DF6E"
-        copyText="To get the best output,please consider the following: 1. One person in the image. 2. Aim for good light conditions. 3. Don't wear sunglasses or hats. 4. Smile!"
+        copyText={`
+          To get the best output, please consider the following:<br></br>
+          1. One person in the image.<br>
+          2. Aim for good light conditions.<br>
+          3. Don't wear sunglasses or hats.<br>
+          4. Smile!
+        `}
         copyTextColor="#F3DF6E"
         middleContent={
           <div className={styles.webcamContainer}>

@@ -94,6 +94,7 @@
 
 .popupBody {
   padding: 5%;
+  padding-top: 1%;
   overflow-y: auto;
   font-family: var(--font-futura);
   font-size: clamp(0.8rem, 1.5vw, 1rem);
@@ -101,6 +102,12 @@
   color: #333;
 }
 
+.popupHeader {
+  position: relative;
+  align-self: flex-end;
+  padding-right: 5%;
+  padding-top: 5%;
+}
 .popupBody h2 {
   font-size: clamp(1rem, 2vw, 1.5rem);
   font-weight: bold;
@@ -128,8 +135,6 @@
   .infoPage {
     padding: 2vh 5vw;
   }
-
-
 
   .checkboxWrapper {
     flex-direction: row;
