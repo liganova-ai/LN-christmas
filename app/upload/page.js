@@ -15,7 +15,7 @@ export default function UploadPage() {
   const webcamRef = useRef(null);
 
   const capturePhoto = () => {
-    const photo = webcamRef.current.getScreenshot();
+    const photo = webcamRef.current.getScreenshot({ width: 480, height: 640 });
     setImage(photo);
   };
 
