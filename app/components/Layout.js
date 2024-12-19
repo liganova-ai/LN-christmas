@@ -24,12 +24,11 @@ const Layout = ({
         >
           {heading}
         </h1>
-        <p 
-          className={styles.copyText} 
-          style={{ color: copyTextColor }} // Dynamic copy text color
-        >
-          {copyText}
-        </p>
+        <div 
+        className={styles.copyText} 
+        style={{ color: copyTextColor }} 
+        dangerouslySetInnerHTML={{ __html: copyText }} // Render HTML content
+        />
       <main className={styles.middleContent}>{middleContent}</main>
 
       <footer className={styles.footer}>{children}</footer>

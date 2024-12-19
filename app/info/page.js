@@ -26,17 +26,21 @@ export default function InfoPage() {
         <Layout
           heading="INFO"
           headingColor="#C1363C"
-          copyText="This AI-based experience has been fully built by LIGANOVA internally and showcases our AI capabilities.
-                The technology is experimental! While guided by rules, please understand that the AI has creative freedom
-                within the images. Enjoy the experience and have a pleasant XMAS time."
+          copyText={`<p>This AI-based experience has been fully built by LIGANOVA internally and showcases our AI capabilities.</p>
+            <p>The technology is experimental! While guided by rules, please understand that the AI has creative freedom within the images.</p>
+            <p>Enjoy the experience and have a pleasant XMAS time.</p>`}
           middleContent={
             <div className={styles.contentWrapper}>
-              <Image src="/InfoDontShareIcon.svg" alt="Dont share this App" width={200} height={200} />
-              
-            </div>
-          }
-        >
-          <div className={styles.checkboxWrapper}>
+              <div className={styles.responsiveImageWrapper}>
+                <Image
+                  src="/InfoDontShareIcon.svg"
+                  alt="Don't share this App"
+                  className={styles.responsiveImage}
+                  width={200}
+                  height={200}
+                />
+              </div>
+              <div className={styles.checkboxWrapper}>
                 <input
                   type="checkbox"
                   id="termsCheckbox"
@@ -53,6 +57,10 @@ export default function InfoPage() {
                   </span>
                 </label>
               </div>
+            </div>
+          }
+        >
+          
           <Button onClick={proceedToUpload} disabled={!isChecked}>
             Continue
           </Button>

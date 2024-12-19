@@ -48,7 +48,10 @@
 }
 
 .checkbox {
-  transform: scale(1);
+  width: 20px;
+  height: 20px;
+  accent-color: #C1363C; /* Set the desired color for the checkbox when checked */
+  cursor: pointer; /* Optional: improve user experience */
 }
 
 .checkboxLabel {
@@ -107,6 +110,18 @@
 .popupBody p,
 .popupBody ul {
   margin-bottom: 10px;
+}
+
+
+.responsiveImage {
+  max-width: 60%;
+  height: auto;
+}
+
+.responsiveImageWrapper {
+  width: 100%; /* Ensures the container spans the full width of its parent */
+  max-width: 300px; /* Optional: sets a maximum width for larger screens */
+  margin: 0 auto; /* Center the image horizontally */
 }
 
 @media (max-width: 768px) {

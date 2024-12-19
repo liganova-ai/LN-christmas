@@ -99,7 +99,7 @@ export default function HomePage() {
         </div>
         </div>
         <div className={styles.buttonContainer}>
-          <Button onClick={() => router.push('/info')}>Continue</Button>
+          <Button onClick={() => router.push('/info')}>Start</Button>
         </div>
       </div>
     </div>
