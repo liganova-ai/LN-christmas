@@ -124,68 +124,69 @@ export default function ThemePage() {
       <header className={styles.header}>
         <Logo color="yellow"/> 
       </header>
-
-      <Layout heading="THEME" headingColor='#DE75A5'>
-        <div className={styles.themeContainer}>
-          <div className={styles.themeRow}>
-            <h2 className={styles.themeHeading}>CIAO NATALE</h2>
-            <p className={styles.themeCopy}>80s vacation in Italy</p>
-            <div className={styles.svgContainer}>
-              {themes.slice(0, 2).map((theme) => (
-                <div
-                  key={theme.key}
-                  className={`${styles.themeWrapper} ${
-                    selectedTheme === theme.key ? styles.selected : ''
-                  }`}
-                  onClick={() => handleThemeClick(theme.key)}
-                >
-                  <img
-                    src={theme.svg}
-                    alt={theme.key}
-                    className={styles.themeSvg}
-                  />
-                  {selectedTheme === theme.key && (
-                    <img
-                      src="/select_circle.svg"
-                      alt="Selected Overlay"
-                      className={styles.selectOverlay}
-                    />
-                  )}
-                </div>
-              ))}
+      <Layout heading="THEME" 
+      headingColor='#DE75A5'
+      copyText={''}
+      middleContent={<div className={styles.themeContainer}>
+      <div className={styles.themeRow}>
+        <h2 className={styles.themeHeading}>CIAO NATALE</h2>
+        <p className={styles.themeCopy}>80s vacation in Italy</p>
+        <div className={styles.svgContainer}>
+          {themes.slice(0, 2).map((theme) => (
+            <div
+              key={theme.key}
+              className={`${styles.themeWrapper} ${
+                selectedTheme === theme.key ? styles.selected : ''
+              }`}
+              onClick={() => handleThemeClick(theme.key)}
+            >
+              <img
+                src={theme.svg}
+                alt={theme.key}
+                className={styles.themeSvg}
+              />
+              {selectedTheme === theme.key && (
+                <img
+                  src="/select_circle.svg"
+                  alt="Selected Overlay"
+                  className={styles.selectOverlay}
+                />
+              )}
             </div>
-          </div>
-
-          <div className={styles.themeRow}>
-            <h2 className={styles.themeHeading}>ITALO DISCO</h2>
-            <p className={styles.themeCopy}>Party like its the 80s</p>
-            <div className={styles.svgContainer}>
-              {themes.slice(2).map((theme) => (
-                <div
-                  key={theme.key}
-                  className={`${styles.themeWrapper} ${
-                    selectedTheme === theme.key ? styles.selected : ''
-                  }`}
-                  onClick={() => handleThemeClick(theme.key)}
-                >
-                  <img
-                    src={theme.svg}
-                    alt={theme.key}
-                    className={styles.themeSvg}
-                  />
-                  {selectedTheme === theme.key && (
-                    <img
-                      src="/select_circle.svg"
-                      alt="Selected Overlay"
-                      className={styles.selectOverlay}
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
+      </div>
 
+      <div className={styles.themeRow}>
+        <h2 className={styles.themeHeading}>ITALO DISCO</h2>
+        <p className={styles.themeCopy}>Party like its the 80s</p>
+        <div className={styles.svgContainer}>
+          {themes.slice(2).map((theme) => (
+            <div
+              key={theme.key}
+              className={`${styles.themeWrapper} ${
+                selectedTheme === theme.key ? styles.selected : ''
+              }`}
+              onClick={() => handleThemeClick(theme.key)}
+            >
+              <img
+                src={theme.svg}
+                alt={theme.key}
+                className={styles.themeSvg}
+              />
+              {selectedTheme === theme.key && (
+                <img
+                  src="/select_circle.svg"
+                  alt="Selected Overlay"
+                  className={styles.selectOverlay}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>}>
+        
         <Button onClick={handleContinue}>Continue</Button>
       </Layout>
     </div>
