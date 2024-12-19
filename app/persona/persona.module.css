@@ -35,10 +35,11 @@ box-sizing: border-box;
 .dropdownWrapper {
   margin-bottom: 20px;
   min-width: 200px;
+  text-align: left;
 }
 
 .label {
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   color: #C32F33;
   margin-bottom: 10px;
   display: block;
@@ -47,7 +48,7 @@ box-sizing: border-box;
 
 .react-select__control {
   background-color: #f0f0f0;
-  border-radius: 500px;
+  border-radius: 50px !important;
   min-height: 50px;
   width: 100%;
   text-align: left;
@@ -55,6 +56,9 @@ box-sizing: border-box;
 
 .react-select__menu {
   width: 100%;
+}
+.react-select__value-container { 
+  font-size: 0.8rem; 
 }
 
 .react-select__control:hover {

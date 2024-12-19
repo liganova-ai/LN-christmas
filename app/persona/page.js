@@ -74,6 +74,27 @@ export default function PersonaPage() {
                 options={genderOptions}
                 classNamePrefix="react-select"
                 onChange={(selected) => handleSelection('gender', selected)}
+                styles={{
+                  control: (base) => ({
+                    ...base,
+                    borderRadius: '20px',
+                    overflow: 'hidden',
+                  }),
+                  menu: (base) => ({
+                    ...base,
+                    borderRadius: '15px',
+                    overflow: 'hidden',
+                  }),
+                  menuList: (base) => ({
+                    ...base,
+                    borderRadius: '15px',
+                  }),
+                  placeholder: (base) => ({
+                    ...base,
+                    fontSize: '0.8rem', // Adjust font size here
+                    color: '#888', // Optional: Change placeholder text color
+                  }),
+                }}
               />
             </div>
             <div className={styles.dropdownWrapper}>
@@ -82,6 +103,27 @@ export default function PersonaPage() {
                 options={ethnicityOptions}
                 classNamePrefix="react-select"
                 onChange={(selected) => handleSelection('ethnicity', selected)}
+                styles={{
+                  control: (base) => ({
+                    ...base,
+                    borderRadius: '20px',
+                    overflow: 'hidden',
+                  }),
+                  menu: (base) => ({
+                    ...base,
+                    borderRadius: '15px',
+                    overflow: 'hidden',
+                  }),
+                  menuList: (base) => ({
+                    ...base,
+                    borderRadius: '15px',
+                  }),
+                  placeholder: (base) => ({
+                    ...base,
+                    fontSize: '0.8rem', // Adjust font size here
+                    color: '#888', // Optional: Change placeholder text color
+                  }),
+                }}
               />
             </div>
           </div>
