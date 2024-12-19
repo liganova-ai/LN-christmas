@@ -12,7 +12,6 @@ export default function ResultPage() {
   const router = useRouter();
   const [prediction, setPrediction] = useState(null);
   const imageRef = useRef(null);
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   useEffect(() => {
     const storedPrediction = localStorage.getItem('predictionResult');
@@ -51,19 +50,18 @@ export default function ResultPage() {
   };
 
   const handleDownload = async () => {
-    if (imageRef.current && isImageLoaded) {
+    if (imageRef.current) {
       try {
-        const { width, height } = imageRef.current.getBoundingClientRect();
-        const aspectRatio = width / height;
+        const wrapper = imageRef.current.getBoundingClientRect(); // Get actual dimensions
+        const aspectRatio = wrapper.width / wrapper.height;
 
-        const canvasWidth = 896;
-        const canvasHeight = canvasWidth / aspectRatio;
+        const canvasWidth = 896; // Base width for high resolution
+        const canvasHeight = canvasWidth / aspectRatio; // Maintain aspect ratio
 
         const dataUrl = await toPng(imageRef.current, {
           canvasWidth,
           canvasHeight,
         });
-
         const link = document.createElement('a');
         link.href = dataUrl;
         link.download = 'xmas24-ai-timemachine.png';
@@ -72,8 +70,6 @@ export default function ResultPage() {
         console.error('Error generating image:', error);
         alert('An error occurred while generating the image.');
       }
-    } else {
-      alert('Please wait for the image to load fully.');
     }
   };
   
@@ -98,7 +94,6 @@ export default function ResultPage() {
                 height={1152}
                 objectFit="cover"
                 className={styles.generatedImage}
-                onLoad={() => setIsImageLoaded(true)}
               />
               <Image
                 src="/Photo_Frame_Overlay.svg"
