@@ -97,6 +97,7 @@
 
   .copyText {
     font-size: 0.9rem; /* Smaller text size for mobile */
+    padding-inline: 10%;
   }
 
   .middleContent {
@@ -123,6 +124,7 @@
 
   .copyText {
     font-size: 0.8rem;
+    padding-inline: 10%;
   }
 
   .middleContent {

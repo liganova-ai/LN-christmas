@@ -24,11 +24,13 @@ const Layout = ({
         >
           {heading}
         </h1>
-        <div 
-        className={styles.copyText} 
-        style={{ color: copyTextColor }} 
-        dangerouslySetInnerHTML={{ __html: copyText }} // Render HTML content
-        />
+        {copyText && copyText.trim() && ( // Conditionally render only if copyText is not empty
+          <div 
+            className={styles.copyText} 
+            style={{ color: copyTextColor }} 
+            dangerouslySetInnerHTML={{ __html: copyText }}
+          />
+        )}
       <main className={styles.middleContent}>{middleContent}</main>
 
       <footer className={styles.footer}>{children}</footer>
