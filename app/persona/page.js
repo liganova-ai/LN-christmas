@@ -94,6 +94,27 @@ export default function PersonaPage() {
                     fontSize: '0.8rem', // Adjust font size here
                     color: '#888', // Optional: Change placeholder text color
                   }),
+                  singleValue: (base) => ({
+                    ...base,
+                    fontSize: '0.8rem', // Font size for the selected value
+                    color: '#333',
+                  }),
+                  option: (base, { isFocused, isSelected }) => ({
+                    ...base,
+                    fontSize: '0.8rem', // Font size for dropdown options
+                    backgroundColor: isFocused
+                      ? '#DE75A5' // Highlight color for focused option
+                      : isSelected
+                      ? '#DE75A5' // Background color for selected option
+                      : '#fff', // Default background color
+                    color: isSelected ? '#fff' : '#333', // Text color
+                    cursor: 'pointer',
+                  }),
+                  input: (base) => ({
+                    ...base,
+                    fontSize: '0.8rem', // Font size for typed input in a searchable dropdown
+                    color: '#333',
+                  }),
                 }}
               />
             </div>
@@ -116,12 +137,33 @@ export default function PersonaPage() {
                   }),
                   menuList: (base) => ({
                     ...base,
-                    borderRadius: '15px',
+                    borderRadius: '20px',
                   }),
                   placeholder: (base) => ({
                     ...base,
                     fontSize: '0.8rem', // Adjust font size here
                     color: '#888', // Optional: Change placeholder text color
+                  }),
+                  singleValue: (base) => ({
+                    ...base,
+                    fontSize: '0.8rem', // Font size for the selected value
+                    color: '#333',
+                  }),
+                  option: (base, { isFocused, isSelected }) => ({
+                    ...base,
+                    fontSize: '0.8rem', // Font size for dropdown options
+                    backgroundColor: isFocused
+                      ? '#f0f0f0' // Highlight color for focused option
+                      : isSelected
+                      ? '#DE75A5' // Background color for selected option
+                      : '#fff', // Default background color
+                    color: isSelected ? '#fff' : '#333', // Text color
+                    cursor: 'pointer',
+                  }),
+                  input: (base) => ({
+                    ...base,
+                    fontSize: '0.8rem', // Font size for typed input in a searchable dropdown
+                    color: '#333',
                   }),
                 }}
               />
