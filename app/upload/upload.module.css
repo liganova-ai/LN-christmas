@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100%; /* Full viewport height */
+  height: 100%; 
   background-color: #DE75A5; /* Page-specific background color */
 }
 
@@ -11,8 +11,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 30px 20px; /* Add some padding for spacing */
-  width: 100%; /* Take full width of the page */
+  padding: 30px 20px; 
+  width: 100%;
   background: transparent; 
   box-sizing: border-box;
 }
@@ -25,12 +25,13 @@
   padding: 16px;
 }
 
-.webcam {
+.webcam, .imagePreview {
   border: 2px dashed yellow;
   border-radius: 8px;
   width: 100%;
-  max-width: 300px; 
-  aspect-ratio: 3 / 4; /* Maintain a selfie-like aspect ratio */
+  max-width: 100px;
+  aspect-ratio: 0.75; /* Maintain vertical format */
+  object-fit: cover; /* Ensure content fits */
 }
 
 /* Footer for buttons */
@@ -54,9 +55,8 @@
 }
 
 @media (max-width: 480px) {
-  .webcam {
-    max-width: 300px; /* Smaller webcam size for phones */
-    max-height: 300px;
+  .webcam, .imagePreview {
+    max-width: 60%;
   }
 
   .webcamContainer {
@@ -68,9 +68,16 @@
   }
 }
 
+@media (max-height: 700px) {
+  .webcam, .imagePreview {
+    max-width: 40%;
+  }
+}
+
+
 @media (max-width: 380px) {
   .webcam {
-    max-width: 80%; /* Smaller webcam size for phones */
+    max-width: 50%; /* Smaller webcam size for phones */
    }
 
 
