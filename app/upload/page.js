@@ -137,9 +137,6 @@ export default function UploadPage() {
                 style={{ display: 'none' }}
                 onChange={handleUpload}
               />
-              <Button onClick={() => document.getElementById('fileUpload').click()}>
-                Upload Picture
-              </Button>
             </>
           ) : (
             <>

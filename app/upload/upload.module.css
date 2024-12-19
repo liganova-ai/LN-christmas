@@ -55,7 +55,7 @@
 /* Responsive styles */
 @media (max-width: 768px) {
   .webcam {
-    max-width: 240px; /* Smaller webcam size for tablets */
+    max-width: 60%; /* Smaller webcam size for tablets */
   }
 
 
