@@ -96,7 +96,7 @@ export default function UploadPage() {
         heading="Una Foto"
         headingColor="#F3DF6E"
         copyText={`
-          To get the best output, please consider the following:<br></br>
+          To get the best output, please consider the following:<br>
           1. One person in the image.<br>
           2. Aim for good light conditions.<br>
           3. Don't wear sunglasses or hats.<br>

@@ -20,6 +20,7 @@ export default function ThemePage() {
   const [persona, setPersona] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedTheme, setSelectedTheme] = useState(null);
+  const [isBlocked, setIsBlocked] = useState(false);
 
   useEffect(() => {
     const storedImage = localStorage.getItem('uploadedImage');
@@ -43,20 +44,27 @@ export default function ThemePage() {
   };
 
   const handleContinue = async () => {
+    if (isBlocked) return; // Back if clicked already
+
     if (!selectedTheme) {
       alert('Please select a theme before proceeding.');
+      setIsBlocked(false);
       return;
     }
   
     if (!image) {
       alert('Image not found! Please upload or capture an image first.');
+      setIsBlocked(false);
       return;
     }
   
     if (!persona) {
       alert('Gender and Ethnicity details not found. Please restart.');
+      setIsBlocked(false);
       return;
     }
+
+    setIsBlocked(true); // Blocking clicks
   
     const { gender, ethnicity } = persona;
     
@@ -77,6 +85,7 @@ export default function ThemePage() {
   
     if (!selectedPrompt) {
       alert(`Prompt not found for theme: ${selectedPrompt}`);
+      setIsBlocked(false);
       return;
     }
   
@@ -96,6 +105,7 @@ export default function ThemePage() {
 
       if (response.status !== 201) {
         alert(`Error: ${prediction.detail}`);
+        setIsBlocked(false);
         return;
       }
 
@@ -104,6 +114,7 @@ export default function ThemePage() {
     } catch (error) {
       console.error('Error during theme selection:', error);
       alert('An error occurred. Please try again.');
+      setIsBlocked(false);
       setIsLoading(false);
     }
   };
