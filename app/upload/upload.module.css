@@ -29,7 +29,7 @@
   border: 2px dashed yellow;
   border-radius: 8px;
   width: 100%;
-  max-width: 100px;
+  max-width: 300px;
   aspect-ratio: 0.75; /* Maintain vertical format */
   object-fit: cover; /* Ensure content fits */
 }
@@ -55,7 +55,7 @@
 }
 
 @media (max-width: 480px) {
-  .webcam, .imagePreview {
+  .webcam {
     max-width: 60%;
   }
 
@@ -69,7 +69,7 @@
 }
 
 @media (max-height: 700px) {
-  .webcam, .imagePreview {
+  .webcam {
     max-width: 40%;
   }
 }
