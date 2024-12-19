@@ -25,14 +25,24 @@
   padding: 16px;
 }
 
-.webcam, .imagePreview {
+.webcam {
   border: 2px dashed yellow;
   border-radius: 8px;
   width: 100%;
   max-width: 300px;
   aspect-ratio: 0.75; /* Maintain vertical format */
-  object-fit: cover; /* Ensure content fits */
+  object-fit: contain; /* Ensure content fits */
 }
+
+.imagePreview {
+  border: 2px dashed yellow;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+
 
 /* Footer for buttons */
 .footer {
@@ -55,7 +65,7 @@
 }
 
 @media (max-width: 480px) {
-  .webcam, .imagePreview {
+  .webcam {
     max-width: 60%;
   }
 
@@ -69,7 +79,7 @@
 }
 
 @media (max-height: 700px) {
-  .webcam, .imagePreview {
+  .webcam {
     max-width: 40%;
   }
 }
