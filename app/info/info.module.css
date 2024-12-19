@@ -20,10 +20,10 @@
 
 .contentWrapper {
   display: flex;
-  align-items: center;
+  align-items: space-around;
   justify-content: center;
   flex-direction: column;
-  text-align: center;
+  height: 100%;
   gap: 10px;
   flex: 1; /* Ensures it expands proportionally */
 }
@@ -121,14 +121,14 @@
 
 
 .responsiveImage {
-  max-width: 60%;
+  max-width: 100%;
   height: auto;
 }
 
 .responsiveImageWrapper {
-  width: 100%; /* Ensures the container spans the full width of its parent */
-  max-width: 300px; /* Optional: sets a maximum width for larger screens */
-  margin: 0 auto; /* Center the image horizontally */
+  width: 80%; 
+  max-width: 300px; 
+  margin: 0 auto; 
 }
 
 @media (max-width: 768px) {

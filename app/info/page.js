@@ -30,7 +30,6 @@ export default function InfoPage() {
             <p>The technology is experimental! While guided by rules, please understand that the AI has creative freedom within the images.</p>
             <p>Enjoy the experience and have a pleasant XMAS time.</p>`}
           middleContent={
-            <div className={styles.contentWrapper}>
               <div className={styles.responsiveImageWrapper}>
                 <Image
                   src="/InfoDontShareIcon.svg"
@@ -39,8 +38,10 @@ export default function InfoPage() {
                   width={200}
                   height={200}
                 />
-              </div>
-              <div className={styles.checkboxWrapper}>
+            </div>
+          }
+        >
+          <div className={styles.checkboxWrapper}>
                 <input
                   type="checkbox"
                   id="termsCheckbox"
@@ -57,10 +58,6 @@ export default function InfoPage() {
                   </span>
                 </label>
               </div>
-            </div>
-          }
-        >
-          
           <Button onClick={proceedToUpload} disabled={!isChecked}>
             Continue
           </Button>
