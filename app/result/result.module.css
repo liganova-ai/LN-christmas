@@ -19,8 +19,10 @@
 
 .imageWrapper {
   position: relative;
-  width: 250px; /* Adjusted width */
-  height: 350px; /* Adjusted height */
+  width: 100%; /* Ensure it adjusts to the container width */
+  max-width: 300px; /* Restrict maximum size */
+  height: 100%; /* Maintain aspect ratio */
+  margin: 0 auto; /* Center the image */
 }
 
 .generatedImage {
@@ -32,9 +34,14 @@
 }
 
 .overlay {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Match the wrapper's size */
+  height: 100%; /* Match the wrapper's size */
   z-index: 2;
-  transform: scale(1.05);
+  transform: scale(1.05); /* Slight scaling for overlay */
+  pointer-events: none; /* Prevent interaction */
 }
 
 .buttonContainer {
@@ -70,3 +77,35 @@
   }
 }
 
+
+@media (min-height: 480px) {
+  .imageWrapper {
+    max-width: 300px; /* Reduce size on smaller screens */
+  }
+
+  .customButton {
+    font-size: 0.9rem; /* Smaller text for buttons */
+    padding: 8px 40px; /* Adjust button size */
+  }
+
+  .header {
+    padding: 20px 10px; /* Adjust header padding */
+  }
+}
+
+
+
+@media (max-width: 400px) {
+  .imageWrapper {
+    max-width: 250px; /* Reduce size on smaller screens */
+  }
+
+  .customButton {
+    font-size: 0.9rem; /* Smaller text for buttons */
+    padding: 8px 40px; /* Adjust button size */
+  }
+
+  .header {
+    padding: 20px 10px; /* Adjust header padding */
+  }
+}
