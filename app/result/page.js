@@ -55,7 +55,7 @@ export default function ResultPage() {
         const wrapper = imageRef.current.getBoundingClientRect(); // Get actual dimensions
         const aspectRatio = wrapper.width / wrapper.height;
 
-        const canvasWidth = 896; // Base width for high resolution
+        const canvasWidth = 896; // Base width for resolution
         const canvasHeight = canvasWidth / aspectRatio; // Maintain aspect ratio
 
               // Safari workaround: call toPng three times

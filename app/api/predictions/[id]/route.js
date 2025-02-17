@@ -9,7 +9,7 @@ const replicate = new Replicate({
 replicate.fetch = (url, options) => fetch(url, { cache: "no-store", ...options });
 
 export async function GET(request, { params }) {
-  // Await params before accessing properties
+  // Await params before accessing properties, params --> from dynamic route get param [id]
   const { id } = await params;
 
   try {

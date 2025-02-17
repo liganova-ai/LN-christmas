@@ -39,12 +39,13 @@ export default function ThemePage() {
     }
   }, []);
 
+  // set new theme if it wasnt already selected, if already selected = Null, check if previous(prev) is already the selected themeKey 
   const handleThemeClick = (themeKey) => {
-    setSelectedTheme((prev) => (prev === themeKey ? null : themeKey)); // Toggle selection
+    setSelectedTheme((prev) => (prev === themeKey ? null : themeKey)); 
   };
 
   const handleContinue = async () => {
-    if (isBlocked) return; // Back if clicked already
+    if (isBlocked) return; // if clicked already nothing will happen 
 
     if (!selectedTheme) {
       alert('Please select a theme before proceeding.');
@@ -64,7 +65,7 @@ export default function ThemePage() {
       return;
     }
 
-    setIsBlocked(true); // Blocking clicks
+    setIsBlocked(true); // Blocking any further clicks
   
     const { gender, ethnicity } = persona;
     
@@ -80,6 +81,7 @@ export default function ThemePage() {
     const selectedPromptKey = `${normalizedTheme}_${gender.toLowerCase()}`;
     console.log("selected prompt key lower:", selectedPromptKey);
   
+    // get long prompt from theme key name 
     const selectedPrompt = themePrompts[selectedPromptKey];
     console.log("Selected Prompt:", selectedPrompt);
   
@@ -111,7 +113,7 @@ export default function ThemePage() {
 
       localStorage.setItem('predictionId', prediction.id);
       router.push('/loading');
-    } catch (error) {
+    } catch (error) { 
       console.error('Error during theme selection:', error);
       alert('An error occurred. Please try again.');
       setIsBlocked(false);
