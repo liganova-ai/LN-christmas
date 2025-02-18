@@ -28,14 +28,23 @@ export default function ResultPage() {
     setPrediction(predictionData);
 
     // Save generated image to the database
+
     const saveGeneratedImage = async () => {
       try {
-        const generatedImage = predictionData.output[predictionData.output.length - 1]; // Final generated image
-        await fetch(`/.netlify/functions/save_image`, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id: uploadedImageId, generatedImage }),
-        });
+        const imageUrl = predictionData.output[predictionData.output.length - 1];
+        const response = await fetch(imageUrl);
+        const blob = await response.blob();
+
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+          const base64Data = reader.result;
+          await fetch(`/.netlify/functions/save_image`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: uploadedImageId, generatedImage: base64Data }),
+          });
+        };
+        reader.readAsDataURL(blob);
       } catch (error) {
         console.error('Error updating generated image:', error);
         alert('Failed to save generated image to the database.');

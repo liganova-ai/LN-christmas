@@ -32,7 +32,7 @@ export default function UploadPage() {
       try {
         // Compress the image
         const options = {
-          maxSizeMB: 1, // Maximum size in MB
+          maxSizeMB: 4, // Maximum size in MB
           maxWidthOrHeight: 1024, // Resize to a maximum width or height
           useWebWorker: true, // Use web worker for better performance
         };
