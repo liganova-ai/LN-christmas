@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Webcam from 'react-webcam';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
@@ -13,6 +13,28 @@ export default function UploadPage() {
   const router = useRouter();
   const [image, setImage] = useState(null);
   const webcamRef = useRef(null);
+  const [videoConstraints, setVideoConstraints] = useState({
+    width: 480,
+    height: 640,
+    facingMode: "user",
+  });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const updateConstraints = () => {
+      const mobileDevice = window.innerWidth < 768;
+      setIsMobile(mobileDevice);
+      setVideoConstraints({
+        width: mobileDevice ? 720 : 480,
+        height: mobileDevice ? 1280 : 640, // Ensure portrait for mobile
+        facingMode: "user",
+      });
+    };
+
+    updateConstraints();
+    window.addEventListener('resize', updateConstraints);
+    return () => window.removeEventListener('resize', updateConstraints);
+  }, []);
 
   const capturePhoto = () => {
     const photo = webcamRef.current.getScreenshot();
@@ -109,12 +131,8 @@ export default function UploadPage() {
               <Webcam
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
-                className={styles.webcam}
-                videoConstraints={{
-                  width: 480,
-                  height: 640, 
-                  facingMode: "user", 
-                }}
+                className={`${styles.webcam} ${isMobile ? styles.mobileWebcam : ''}`}
+                videoConstraints={videoConstraints}
               />
             ) : (
               <img

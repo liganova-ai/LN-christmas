@@ -28,9 +28,8 @@
 .webcam {
   border: 2px dashed yellow;
   border-radius: 8px;
-  width: 100%;
+  width: 50%;
   max-width: 300px;
-  aspect-ratio: 0.75; /* Maintain vertical format */
   object-fit: contain; /* Ensure content fits */
 }
 
@@ -55,7 +54,7 @@
 /* Responsive styles */
 @media (max-width: 768px) {
   .webcam {
-    max-width: 60%; /* Smaller webcam size for tablets */
+    max-width: 30%; /* Smaller webcam size for tablets */
   }
 
 
@@ -66,7 +65,7 @@
 
 @media (max-width: 480px) {
   .webcam {
-    max-width: 60%;
+    max-width: 50%;
   }
 
   .webcamContainer {
@@ -81,7 +80,7 @@
 
 @media (max-width: 380px) {
   .webcam {
-    max-width: 60%; /* Smaller webcam size for phones */
+    max-width: 45%; /* Smaller webcam size for phones */
    }
 
 
